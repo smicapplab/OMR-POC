@@ -1,0 +1,30 @@
+# Node
+node_modules/
+dist/
+
+# Environment files (all apps)
+.env
+.env.*
+*/.env
+*/.env.*
+fe-omr-demo/.env*
+be-omr-demo/.env*
+omr-server/.env*
+
+#test papers
+omr-server/template/*
+
+#OMR debug files
+omr-server/*.png
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# SQLite
+*.db
+*.sqlite
+
+# OS
+.DS_Store
