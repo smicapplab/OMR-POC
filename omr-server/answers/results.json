@@ -1,0 +1,2252 @@
+{
+  "math": {
+    "answers": {
+      "1": {
+        "answer": "A",
+        "confidence": 0.721,
+        "status": "single",
+        "scores": {
+          "A": 0.721,
+          "B": 0.488,
+          "C": 0.444,
+          "D": 0.47
+        }
+      },
+      "2": {
+        "answer": "B",
+        "confidence": 0.71,
+        "status": "single",
+        "scores": {
+          "A": 0.424,
+          "B": 0.71,
+          "C": 0.415,
+          "D": 0.47
+        }
+      },
+      "3": {
+        "answer": "C",
+        "confidence": 0.824,
+        "status": "single",
+        "scores": {
+          "A": 0.438,
+          "B": 0.462,
+          "C": 0.824,
+          "D": 0.452
+        }
+      },
+      "4": {
+        "answer": "D",
+        "confidence": 0.766,
+        "status": "single",
+        "scores": {
+          "A": 0.432,
+          "B": 0.478,
+          "C": 0.457,
+          "D": 0.766
+        }
+      },
+      "5": {
+        "answer": "A",
+        "confidence": 0.701,
+        "status": "single",
+        "scores": {
+          "A": 0.701,
+          "B": 0.478,
+          "C": 0.413,
+          "D": 0.477
+        }
+      },
+      "6": {
+        "answer": "B",
+        "confidence": 0.725,
+        "status": "single",
+        "scores": {
+          "A": 0.411,
+          "B": 0.725,
+          "C": 0.41,
+          "D": 0.452
+        }
+      },
+      "7": {
+        "answer": "C",
+        "confidence": 0.741,
+        "status": "single",
+        "scores": {
+          "A": 0.43,
+          "B": 0.449,
+          "C": 0.741,
+          "D": 0.466
+        }
+      },
+      "8": {
+        "answer": "D",
+        "confidence": 0.784,
+        "status": "single",
+        "scores": {
+          "A": 0.411,
+          "B": 0.478,
+          "C": 0.408,
+          "D": 0.784
+        }
+      },
+      "9": {
+        "answer": "D",
+        "confidence": 0.723,
+        "status": "single",
+        "scores": {
+          "A": 0.508,
+          "B": 0.518,
+          "C": 0.465,
+          "D": 0.723
+        }
+      },
+      "10": {
+        "answer": "C",
+        "confidence": 0.724,
+        "status": "single",
+        "scores": {
+          "A": 0.451,
+          "B": 0.503,
+          "C": 0.724,
+          "D": 0.487
+        }
+      },
+      "11": {
+        "answer": "B",
+        "confidence": 0.695,
+        "status": "single",
+        "scores": {
+          "A": 0.438,
+          "B": 0.695,
+          "C": 0.424,
+          "D": 0.478
+        }
+      },
+      "12": {
+        "answer": "A",
+        "confidence": 0.672,
+        "status": "single",
+        "scores": {
+          "A": 0.672,
+          "B": 0.487,
+          "C": 0.454,
+          "D": 0.479
+        }
+      },
+      "13": {
+        "answer": "D",
+        "confidence": 0.805,
+        "status": "single",
+        "scores": {
+          "A": 0.462,
+          "B": 0.495,
+          "C": 0.46,
+          "D": 0.805
+        }
+      },
+      "14": {
+        "answer": "C",
+        "confidence": 0.691,
+        "status": "single",
+        "scores": {
+          "A": 0.432,
+          "B": 0.462,
+          "C": 0.691,
+          "D": 0.471
+        }
+      },
+      "15": {
+        "answer": "B",
+        "confidence": 0.741,
+        "status": "single",
+        "scores": {
+          "A": 0.43,
+          "B": 0.741,
+          "C": 0.427,
+          "D": 0.465
+        }
+      },
+      "16": {
+        "answer": "A",
+        "confidence": 0.767,
+        "status": "single",
+        "scores": {
+          "A": 0.767,
+          "B": 0.462,
+          "C": 0.448,
+          "D": 0.47
+        }
+      },
+      "17": {
+        "answer": "A",
+        "confidence": 0.736,
+        "status": "single",
+        "scores": {
+          "A": 0.736,
+          "B": 0.509,
+          "C": 0.439,
+          "D": 0.486
+        }
+      },
+      "18": {
+        "answer": "A",
+        "confidence": 0.714,
+        "status": "single",
+        "scores": {
+          "A": 0.714,
+          "B": 0.488,
+          "C": 0.428,
+          "D": 0.482
+        }
+      },
+      "19": {
+        "answer": "B",
+        "confidence": 0.751,
+        "status": "single",
+        "scores": {
+          "A": 0.466,
+          "B": 0.751,
+          "C": 0.415,
+          "D": 0.479
+        }
+      },
+      "20": {
+        "answer": "B",
+        "confidence": 0.69,
+        "status": "single",
+        "scores": {
+          "A": 0.46,
+          "B": 0.69,
+          "C": 0.44,
+          "D": 0.46
+        }
+      },
+      "21": {
+        "answer": "C",
+        "confidence": 0.767,
+        "status": "single",
+        "scores": {
+          "A": 0.443,
+          "B": 0.488,
+          "C": 0.767,
+          "D": 0.475
+        }
+      },
+      "22": {
+        "answer": "C",
+        "confidence": 0.757,
+        "status": "single",
+        "scores": {
+          "A": 0.441,
+          "B": 0.48,
+          "C": 0.757,
+          "D": 0.453
+        }
+      },
+      "23": {
+        "answer": "D",
+        "confidence": 0.747,
+        "status": "single",
+        "scores": {
+          "A": 0.436,
+          "B": 0.484,
+          "C": 0.419,
+          "D": 0.747
+        }
+      },
+      "24": {
+        "answer": "D",
+        "confidence": 0.746,
+        "status": "single",
+        "scores": {
+          "A": 0.436,
+          "B": 0.474,
+          "C": 0.422,
+          "D": 0.746
+        }
+      },
+      "25": {
+        "answer": "D",
+        "confidence": 0.689,
+        "status": "single",
+        "scores": {
+          "A": 0.525,
+          "B": 0.522,
+          "C": 0.445,
+          "D": 0.689
+        }
+      },
+      "26": {
+        "answer": "C",
+        "confidence": 0.738,
+        "status": "single",
+        "scores": {
+          "A": 0.501,
+          "B": 0.5,
+          "C": 0.738,
+          "D": 0.47
+        }
+      },
+      "27": {
+        "answer": "B",
+        "confidence": 0.727,
+        "status": "single",
+        "scores": {
+          "A": 0.525,
+          "B": 0.727,
+          "C": 0.448,
+          "D": 0.484
+        }
+      },
+      "28": {
+        "answer": "A",
+        "confidence": 0.732,
+        "status": "single",
+        "scores": {
+          "A": 0.732,
+          "B": 0.5,
+          "C": 0.447,
+          "D": 0.487
+        }
+      },
+      "29": {
+        "answer": "A",
+        "confidence": 0.789,
+        "status": "single",
+        "scores": {
+          "A": 0.789,
+          "B": 0.505,
+          "C": 0.464,
+          "D": 0.483
+        }
+      },
+      "30": {
+        "answer": "B",
+        "confidence": 0.763,
+        "status": "single",
+        "scores": {
+          "A": 0.475,
+          "B": 0.763,
+          "C": 0.461,
+          "D": 0.447
+        }
+      },
+      "31": {
+        "answer": "C",
+        "confidence": 0.73,
+        "status": "single",
+        "scores": {
+          "A": 0.477,
+          "B": 0.477,
+          "C": 0.73,
+          "D": 0.427
+        }
+      },
+      "32": {
+        "answer": "D",
+        "confidence": 0.686,
+        "status": "single",
+        "scores": {
+          "A": 0.503,
+          "B": 0.499,
+          "C": 0.43,
+          "D": 0.686
+        }
+      },
+      "33": {
+        "answer": "A",
+        "confidence": 0.592,
+        "status": "single",
+        "scores": {
+          "A": 0.592,
+          "B": 0.447,
+          "C": 0.418,
+          "D": 0.427
+        }
+      },
+      "34": {
+        "answer": "B",
+        "confidence": 0.651,
+        "status": "single",
+        "scores": {
+          "A": 0.435,
+          "B": 0.651,
+          "C": 0.396,
+          "D": 0.43
+        }
+      },
+      "35": {
+        "answer": "C",
+        "confidence": 0.608,
+        "status": "single",
+        "scores": {
+          "A": 0.452,
+          "B": 0.427,
+          "C": 0.608,
+          "D": 0.432
+        }
+      },
+      "36": {
+        "answer": "D",
+        "confidence": 0.689,
+        "status": "single",
+        "scores": {
+          "A": 0.448,
+          "B": 0.452,
+          "C": 0.375,
+          "D": 0.689
+        }
+      },
+      "37": {
+        "answer": "D",
+        "confidence": 0.686,
+        "status": "single",
+        "scores": {
+          "A": 0.449,
+          "B": 0.458,
+          "C": 0.37,
+          "D": 0.686
+        }
+      },
+      "38": {
+        "answer": "C",
+        "confidence": 0.674,
+        "status": "single",
+        "scores": {
+          "A": 0.393,
+          "B": 0.428,
+          "C": 0.674,
+          "D": 0.415
+        }
+      },
+      "39": {
+        "answer": "B",
+        "confidence": 0.66,
+        "status": "single",
+        "scores": {
+          "A": 0.413,
+          "B": 0.66,
+          "C": 0.387,
+          "D": 0.431
+        }
+      },
+      "40": {
+        "answer": "A",
+        "confidence": 0.648,
+        "status": "single",
+        "scores": {
+          "A": 0.648,
+          "B": 0.448,
+          "C": 0.421,
+          "D": 0.432
+        }
+      }
+    },
+    "summary": {
+      "total": 40,
+      "single": 40,
+      "multi": 0,
+      "blank": 0
+    }
+  },
+  "english": {
+    "answers": {
+      "1": {
+        "answer": "A",
+        "confidence": 0.643,
+        "status": "single",
+        "scores": {
+          "A": 0.643,
+          "B": 0.436,
+          "C": 0.424,
+          "D": 0.467
+        }
+      },
+      "2": {
+        "answer": "B",
+        "confidence": 0.74,
+        "status": "single",
+        "scores": {
+          "A": 0.359,
+          "B": 0.74,
+          "C": 0.445,
+          "D": 0.474
+        }
+      },
+      "3": {
+        "answer": "C",
+        "confidence": 0.686,
+        "status": "single",
+        "scores": {
+          "A": 0.324,
+          "B": 0.395,
+          "C": 0.686,
+          "D": 0.449
+        }
+      },
+      "4": {
+        "answer": "D",
+        "confidence": 0.732,
+        "status": "single",
+        "scores": {
+          "A": 0.34,
+          "B": 0.415,
+          "C": 0.41,
+          "D": 0.732
+        }
+      },
+      "5": {
+        "answer": "D",
+        "confidence": 0.801,
+        "status": "single",
+        "scores": {
+          "A": 0.314,
+          "B": 0.414,
+          "C": 0.395,
+          "D": 0.801
+        }
+      },
+      "6": {
+        "answer": "C",
+        "confidence": 0.734,
+        "status": "single",
+        "scores": {
+          "A": 0.341,
+          "B": 0.417,
+          "C": 0.734,
+          "D": 0.453
+        }
+      },
+      "7": {
+        "answer": "B",
+        "confidence": 0.691,
+        "status": "single",
+        "scores": {
+          "A": 0.303,
+          "B": 0.691,
+          "C": 0.387,
+          "D": 0.447
+        }
+      },
+      "8": {
+        "answer": "A",
+        "confidence": 0.633,
+        "status": "single",
+        "scores": {
+          "A": 0.633,
+          "B": 0.402,
+          "C": 0.402,
+          "D": 0.453
+        }
+      },
+      "9": {
+        "answer": "B",
+        "confidence": 0.667,
+        "status": "single",
+        "scores": {
+          "A": 0.462,
+          "B": 0.667,
+          "C": 0.408,
+          "D": 0.469
+        }
+      },
+      "10": {
+        "answer": "B",
+        "confidence": 0.733,
+        "status": "single",
+        "scores": {
+          "A": 0.453,
+          "B": 0.733,
+          "C": 0.417,
+          "D": 0.467
+        }
+      },
+      "11": {
+        "answer": "B",
+        "confidence": 0.737,
+        "status": "single",
+        "scores": {
+          "A": 0.424,
+          "B": 0.737,
+          "C": 0.414,
+          "D": 0.451
+        }
+      },
+      "12": {
+        "answer": "B",
+        "confidence": 0.698,
+        "status": "single",
+        "scores": {
+          "A": 0.426,
+          "B": 0.698,
+          "C": 0.4,
+          "D": 0.471
+        }
+      },
+      "13": {
+        "answer": "C",
+        "confidence": 0.723,
+        "status": "single",
+        "scores": {
+          "A": 0.43,
+          "B": 0.417,
+          "C": 0.723,
+          "D": 0.439
+        }
+      },
+      "14": {
+        "answer": "C",
+        "confidence": 0.76,
+        "status": "single",
+        "scores": {
+          "A": 0.458,
+          "B": 0.44,
+          "C": 0.76,
+          "D": 0.466
+        }
+      },
+      "15": {
+        "answer": "C",
+        "confidence": 0.717,
+        "status": "single",
+        "scores": {
+          "A": 0.431,
+          "B": 0.436,
+          "C": 0.717,
+          "D": 0.461
+        }
+      },
+      "16": {
+        "answer": "C",
+        "confidence": 0.615,
+        "status": "single",
+        "scores": {
+          "A": 0.434,
+          "B": 0.44,
+          "C": 0.615,
+          "D": 0.441
+        }
+      },
+      "17": {
+        "answer": "A",
+        "confidence": 0.772,
+        "status": "single",
+        "scores": {
+          "A": 0.772,
+          "B": 0.499,
+          "C": 0.454,
+          "D": 0.487
+        }
+      },
+      "18": {
+        "answer": "B",
+        "confidence": 0.69,
+        "status": "single",
+        "scores": {
+          "A": 0.479,
+          "B": 0.69,
+          "C": 0.44,
+          "D": 0.486
+        }
+      },
+      "19": {
+        "answer": "D",
+        "confidence": 0.715,
+        "status": "single",
+        "scores": {
+          "A": 0.477,
+          "B": 0.49,
+          "C": 0.447,
+          "D": 0.715
+        }
+      },
+      "20": {
+        "answer": "C",
+        "confidence": 0.712,
+        "status": "single",
+        "scores": {
+          "A": 0.478,
+          "B": 0.496,
+          "C": 0.712,
+          "D": 0.479
+        }
+      },
+      "21": {
+        "answer": "B",
+        "confidence": 0.699,
+        "status": "single",
+        "scores": {
+          "A": 0.447,
+          "B": 0.699,
+          "C": 0.41,
+          "D": 0.457
+        }
+      },
+      "22": {
+        "answer": "A",
+        "confidence": 0.646,
+        "status": "single",
+        "scores": {
+          "A": 0.646,
+          "B": 0.501,
+          "C": 0.443,
+          "D": 0.477
+        }
+      },
+      "23": {
+        "answer": "C",
+        "confidence": 0.652,
+        "status": "single",
+        "scores": {
+          "A": 0.452,
+          "B": 0.448,
+          "C": 0.652,
+          "D": 0.461
+        }
+      },
+      "24": {
+        "answer": "D",
+        "confidence": 0.751,
+        "status": "single",
+        "scores": {
+          "A": 0.447,
+          "B": 0.451,
+          "C": 0.415,
+          "D": 0.751
+        }
+      },
+      "25": {
+        "answer": "A",
+        "confidence": 0.694,
+        "status": "single",
+        "scores": {
+          "A": 0.694,
+          "B": 0.486,
+          "C": 0.454,
+          "D": 0.452
+        }
+      },
+      "26": {
+        "answer": "A",
+        "confidence": 0.716,
+        "status": "single",
+        "scores": {
+          "A": 0.716,
+          "B": 0.483,
+          "C": 0.43,
+          "D": 0.435
+        }
+      },
+      "27": {
+        "answer": "A",
+        "confidence": 0.691,
+        "status": "single",
+        "scores": {
+          "A": 0.691,
+          "B": 0.467,
+          "C": 0.422,
+          "D": 0.423
+        }
+      },
+      "28": {
+        "answer": "A",
+        "confidence": 0.608,
+        "status": "single",
+        "scores": {
+          "A": 0.608,
+          "B": 0.488,
+          "C": 0.452,
+          "D": 0.44
+        }
+      },
+      "29": {
+        "answer": "C",
+        "confidence": 0.715,
+        "status": "single",
+        "scores": {
+          "A": 0.44,
+          "B": 0.465,
+          "C": 0.715,
+          "D": 0.432
+        }
+      },
+      "30": {
+        "answer": "C",
+        "confidence": 0.684,
+        "status": "single",
+        "scores": {
+          "A": 0.471,
+          "B": 0.467,
+          "C": 0.684,
+          "D": 0.427
+        }
+      },
+      "31": {
+        "answer": "C",
+        "confidence": 0.763,
+        "status": "single",
+        "scores": {
+          "A": 0.449,
+          "B": 0.439,
+          "C": 0.763,
+          "D": 0.431
+        }
+      },
+      "32": {
+        "answer": "C",
+        "confidence": 0.689,
+        "status": "single",
+        "scores": {
+          "A": 0.465,
+          "B": 0.46,
+          "C": 0.689,
+          "D": 0.419
+        }
+      },
+      "33": {
+        "answer": "A",
+        "confidence": 0.557,
+        "status": "single",
+        "scores": {
+          "A": 0.557,
+          "B": 0.438,
+          "C": 0.405,
+          "D": 0.443
+        }
+      },
+      "34": {
+        "answer": "C",
+        "confidence": 0.592,
+        "status": "single",
+        "scores": {
+          "A": 0.424,
+          "B": 0.441,
+          "C": 0.592,
+          "D": 0.482
+        }
+      },
+      "35": {
+        "answer": "A",
+        "confidence": 0.642,
+        "status": "single",
+        "scores": {
+          "A": 0.642,
+          "B": 0.448,
+          "C": 0.418,
+          "D": 0.469
+        }
+      },
+      "36": {
+        "answer": "B",
+        "confidence": 0.616,
+        "status": "single",
+        "scores": {
+          "A": 0.428,
+          "B": 0.616,
+          "C": 0.405,
+          "D": 0.48
+        }
+      },
+      "37": {
+        "answer": "C",
+        "confidence": 0.656,
+        "status": "single",
+        "scores": {
+          "A": 0.436,
+          "B": 0.473,
+          "C": 0.656,
+          "D": 0.46
+        }
+      },
+      "38": {
+        "answer": "D",
+        "confidence": 0.652,
+        "status": "single",
+        "scores": {
+          "A": 0.427,
+          "B": 0.439,
+          "C": 0.376,
+          "D": 0.652
+        }
+      },
+      "39": {
+        "answer": "B",
+        "confidence": 0.707,
+        "status": "single",
+        "scores": {
+          "A": 0.415,
+          "B": 0.707,
+          "C": 0.415,
+          "D": 0.464
+        }
+      },
+      "40": {
+        "answer": "A",
+        "confidence": 0.617,
+        "status": "single",
+        "scores": {
+          "A": 0.617,
+          "B": 0.447,
+          "C": 0.405,
+          "D": 0.46
+        }
+      }
+    },
+    "summary": {
+      "total": 40,
+      "single": 40,
+      "multi": 0,
+      "blank": 0
+    }
+  },
+  "science": {
+    "answers": {
+      "1": {
+        "answer": "A",
+        "confidence": 0.658,
+        "status": "single",
+        "scores": {
+          "A": 0.658,
+          "B": 0.341,
+          "C": 0.382,
+          "D": 0.414
+        }
+      },
+      "2": {
+        "answer": "C",
+        "confidence": 0.706,
+        "status": "single",
+        "scores": {
+          "A": 0.326,
+          "B": 0.355,
+          "C": 0.706,
+          "D": 0.389
+        }
+      },
+      "3": {
+        "answer": "B",
+        "confidence": 0.615,
+        "status": "single",
+        "scores": {
+          "A": 0.316,
+          "B": 0.615,
+          "C": 0.31,
+          "D": 0.385
+        }
+      },
+      "4": {
+        "answer": "A",
+        "confidence": 0.615,
+        "status": "single",
+        "scores": {
+          "A": 0.615,
+          "B": 0.352,
+          "C": 0.322,
+          "D": 0.358
+        }
+      },
+      "5": {
+        "answer": "B",
+        "confidence": 0.685,
+        "status": "single",
+        "scores": {
+          "A": 0.341,
+          "B": 0.685,
+          "C": 0.331,
+          "D": 0.385
+        }
+      },
+      "6": {
+        "answer": "D",
+        "confidence": 0.719,
+        "status": "single",
+        "scores": {
+          "A": 0.355,
+          "B": 0.388,
+          "C": 0.339,
+          "D": 0.719
+        }
+      },
+      "7": {
+        "answer": "B",
+        "confidence": 0.658,
+        "status": "single",
+        "scores": {
+          "A": 0.409,
+          "B": 0.658,
+          "C": 0.361,
+          "D": 0.397
+        }
+      },
+      "8": {
+        "answer": "A",
+        "confidence": 0.719,
+        "status": "single",
+        "scores": {
+          "A": 0.719,
+          "B": 0.417,
+          "C": 0.375,
+          "D": 0.427
+        }
+      },
+      "9": {
+        "answer": "A",
+        "confidence": 0.682,
+        "status": "single",
+        "scores": {
+          "A": 0.682,
+          "B": 0.458,
+          "C": 0.411,
+          "D": 0.441
+        }
+      },
+      "10": {
+        "answer": "D",
+        "confidence": 0.655,
+        "status": "single",
+        "scores": {
+          "A": 0.441,
+          "B": 0.432,
+          "C": 0.4,
+          "D": 0.655
+        }
+      },
+      "11": {
+        "answer": "C",
+        "confidence": 0.749,
+        "status": "single",
+        "scores": {
+          "A": 0.426,
+          "B": 0.443,
+          "C": 0.749,
+          "D": 0.428
+        }
+      },
+      "12": {
+        "answer": "A",
+        "confidence": 0.669,
+        "status": "single",
+        "scores": {
+          "A": 0.669,
+          "B": 0.467,
+          "C": 0.406,
+          "D": 0.453
+        }
+      },
+      "13": {
+        "answer": "C",
+        "confidence": 0.738,
+        "status": "single",
+        "scores": {
+          "A": 0.449,
+          "B": 0.461,
+          "C": 0.738,
+          "D": 0.458
+        }
+      },
+      "14": {
+        "answer": "B",
+        "confidence": 0.694,
+        "status": "single",
+        "scores": {
+          "A": 0.444,
+          "B": 0.694,
+          "C": 0.404,
+          "D": 0.471
+        }
+      },
+      "15": {
+        "answer": "A",
+        "confidence": 0.672,
+        "status": "single",
+        "scores": {
+          "A": 0.672,
+          "B": 0.493,
+          "C": 0.427,
+          "D": 0.477
+        }
+      },
+      "16": {
+        "answer": "C",
+        "confidence": 0.757,
+        "status": "single",
+        "scores": {
+          "A": 0.449,
+          "B": 0.493,
+          "C": 0.757,
+          "D": 0.473
+        }
+      },
+      "17": {
+        "answer": "D",
+        "confidence": 0.678,
+        "status": "single",
+        "scores": {
+          "A": 0.44,
+          "B": 0.441,
+          "C": 0.402,
+          "D": 0.678
+        }
+      },
+      "18": {
+        "answer": "C",
+        "confidence": 0.714,
+        "status": "single",
+        "scores": {
+          "A": 0.422,
+          "B": 0.449,
+          "C": 0.714,
+          "D": 0.409
+        }
+      },
+      "19": {
+        "answer": "B",
+        "confidence": 0.702,
+        "status": "single",
+        "scores": {
+          "A": 0.431,
+          "B": 0.702,
+          "C": 0.445,
+          "D": 0.434
+        }
+      },
+      "20": {
+        "answer": "A",
+        "confidence": 0.732,
+        "status": "single",
+        "scores": {
+          "A": 0.732,
+          "B": 0.462,
+          "C": 0.417,
+          "D": 0.466
+        }
+      },
+      "21": {
+        "answer": "A",
+        "confidence": 0.678,
+        "status": "single",
+        "scores": {
+          "A": 0.678,
+          "B": 0.473,
+          "C": 0.435,
+          "D": 0.462
+        }
+      },
+      "22": {
+        "answer": "C",
+        "confidence": 0.707,
+        "status": "single",
+        "scores": {
+          "A": 0.432,
+          "B": 0.466,
+          "C": 0.707,
+          "D": 0.457
+        }
+      },
+      "23": {
+        "answer": "B",
+        "confidence": 0.633,
+        "status": "single",
+        "scores": {
+          "A": 0.454,
+          "B": 0.633,
+          "C": 0.414,
+          "D": 0.454
+        }
+      },
+      "24": {
+        "answer": "A",
+        "confidence": 0.645,
+        "status": "single",
+        "scores": {
+          "A": 0.645,
+          "B": 0.484,
+          "C": 0.456,
+          "D": 0.471
+        }
+      },
+      "25": {
+        "answer": "B",
+        "confidence": 0.639,
+        "status": "single",
+        "scores": {
+          "A": 0.443,
+          "B": 0.639,
+          "C": 0.414,
+          "D": 0.422
+        }
+      },
+      "26": {
+        "answer": "B",
+        "confidence": 0.738,
+        "status": "single",
+        "scores": {
+          "A": 0.432,
+          "B": 0.738,
+          "C": 0.388,
+          "D": 0.406
+        }
+      },
+      "27": {
+        "answer": "C",
+        "confidence": 0.66,
+        "status": "single",
+        "scores": {
+          "A": 0.449,
+          "B": 0.451,
+          "C": 0.66,
+          "D": 0.409
+        }
+      },
+      "28": {
+        "answer": "B",
+        "confidence": 0.723,
+        "status": "single",
+        "scores": {
+          "A": 0.444,
+          "B": 0.723,
+          "C": 0.413,
+          "D": 0.411
+        }
+      },
+      "29": {
+        "answer": "A",
+        "confidence": 0.621,
+        "status": "single",
+        "scores": {
+          "A": 0.621,
+          "B": 0.44,
+          "C": 0.387,
+          "D": 0.417
+        }
+      },
+      "30": {
+        "answer": "B",
+        "confidence": 0.646,
+        "status": "single",
+        "scores": {
+          "A": 0.449,
+          "B": 0.646,
+          "C": 0.392,
+          "D": 0.395
+        }
+      },
+      "31": {
+        "answer": "D",
+        "confidence": 0.607,
+        "status": "single",
+        "scores": {
+          "A": 0.469,
+          "B": 0.453,
+          "C": 0.378,
+          "D": 0.607
+        }
+      },
+      "32": {
+        "answer": "C",
+        "confidence": 0.723,
+        "status": "single",
+        "scores": {
+          "A": 0.482,
+          "B": 0.456,
+          "C": 0.723,
+          "D": 0.419
+        }
+      },
+      "33": {
+        "answer": "C",
+        "confidence": 0.634,
+        "status": "single",
+        "scores": {
+          "A": 0.4,
+          "B": 0.405,
+          "C": 0.634,
+          "D": 0.462
+        }
+      },
+      "34": {
+        "answer": "A",
+        "confidence": 0.656,
+        "status": "single",
+        "scores": {
+          "A": 0.656,
+          "B": 0.419,
+          "C": 0.4,
+          "D": 0.458
+        }
+      },
+      "35": {
+        "answer": "B",
+        "confidence": 0.639,
+        "status": "single",
+        "scores": {
+          "A": 0.38,
+          "B": 0.639,
+          "C": 0.423,
+          "D": 0.465
+        }
+      },
+      "36": {
+        "answer": "A",
+        "confidence": 0.561,
+        "status": "single",
+        "scores": {
+          "A": 0.561,
+          "B": 0.426,
+          "C": 0.435,
+          "D": 0.466
+        }
+      },
+      "37": {
+        "answer": "C",
+        "confidence": 0.685,
+        "status": "single",
+        "scores": {
+          "A": 0.389,
+          "B": 0.423,
+          "C": 0.685,
+          "D": 0.465
+        }
+      },
+      "38": {
+        "answer": "A",
+        "confidence": 0.695,
+        "status": "single",
+        "scores": {
+          "A": 0.695,
+          "B": 0.453,
+          "C": 0.44,
+          "D": 0.464
+        }
+      },
+      "39": {
+        "answer": "C",
+        "confidence": 0.671,
+        "status": "single",
+        "scores": {
+          "A": 0.43,
+          "B": 0.462,
+          "C": 0.671,
+          "D": 0.469
+        }
+      },
+      "40": {
+        "answer": "B",
+        "confidence": 0.536,
+        "status": "single",
+        "scores": {
+          "A": 0.396,
+          "B": 0.536,
+          "C": 0.404,
+          "D": 0.444
+        }
+      }
+    },
+    "summary": {
+      "total": 40,
+      "single": 40,
+      "multi": 0,
+      "blank": 0
+    }
+  },
+  "filipino": {
+    "answers": {
+      "1": {
+        "answer": "D",
+        "confidence": 0.71,
+        "status": "single",
+        "scores": {
+          "A": 0.397,
+          "B": 0.391,
+          "C": 0.367,
+          "D": 0.71
+        }
+      },
+      "2": {
+        "answer": "B",
+        "confidence": 0.693,
+        "status": "single",
+        "scores": {
+          "A": 0.4,
+          "B": 0.693,
+          "C": 0.372,
+          "D": 0.421
+        }
+      },
+      "3": {
+        "answer": "A",
+        "confidence": 0.678,
+        "status": "single",
+        "scores": {
+          "A": 0.678,
+          "B": 0.406,
+          "C": 0.376,
+          "D": 0.409
+        }
+      },
+      "4": {
+        "answer": "D",
+        "confidence": 0.448,
+        "status": "multi",
+        "scores": {
+          "A": 0.413,
+          "B": 0.445,
+          "C": 0.405,
+          "D": 0.448
+        }
+      },
+      "5": {
+        "answer": "B",
+        "confidence": 0.645,
+        "status": "single",
+        "scores": {
+          "A": 0.385,
+          "B": 0.645,
+          "C": 0.391,
+          "D": 0.422
+        }
+      },
+      "6": {
+        "answer": "B",
+        "confidence": 0.685,
+        "status": "single",
+        "scores": {
+          "A": 0.391,
+          "B": 0.685,
+          "C": 0.432,
+          "D": 0.452
+        }
+      },
+      "7": {
+        "answer": "D",
+        "confidence": 0.711,
+        "status": "single",
+        "scores": {
+          "A": 0.37,
+          "B": 0.41,
+          "C": 0.392,
+          "D": 0.711
+        }
+      },
+      "8": {
+        "answer": "D",
+        "confidence": 0.746,
+        "status": "single",
+        "scores": {
+          "A": 0.409,
+          "B": 0.448,
+          "C": 0.418,
+          "D": 0.746
+        }
+      },
+      "9": {
+        "answer": "A",
+        "confidence": 0.663,
+        "status": "single",
+        "scores": {
+          "A": 0.663,
+          "B": 0.451,
+          "C": 0.4,
+          "D": 0.445
+        }
+      },
+      "10": {
+        "answer": "C",
+        "confidence": 0.74,
+        "status": "single",
+        "scores": {
+          "A": 0.432,
+          "B": 0.464,
+          "C": 0.74,
+          "D": 0.44
+        }
+      },
+      "11": {
+        "answer": "A",
+        "confidence": 0.716,
+        "status": "single",
+        "scores": {
+          "A": 0.716,
+          "B": 0.419,
+          "C": 0.374,
+          "D": 0.431
+        }
+      },
+      "12": {
+        "answer": "B",
+        "confidence": 0.689,
+        "status": "single",
+        "scores": {
+          "A": 0.447,
+          "B": 0.689,
+          "C": 0.418,
+          "D": 0.448
+        }
+      },
+      "13": {
+        "answer": "A",
+        "confidence": 0.702,
+        "status": "single",
+        "scores": {
+          "A": 0.702,
+          "B": 0.438,
+          "C": 0.398,
+          "D": 0.426
+        }
+      },
+      "14": {
+        "answer": "C",
+        "confidence": 0.707,
+        "status": "single",
+        "scores": {
+          "A": 0.427,
+          "B": 0.451,
+          "C": 0.707,
+          "D": 0.438
+        }
+      },
+      "15": {
+        "answer": "D",
+        "confidence": 0.742,
+        "status": "single",
+        "scores": {
+          "A": 0.427,
+          "B": 0.443,
+          "C": 0.408,
+          "D": 0.742
+        }
+      },
+      "16": {
+        "answer": "B",
+        "confidence": 0.707,
+        "status": "single",
+        "scores": {
+          "A": 0.428,
+          "B": 0.707,
+          "C": 0.44,
+          "D": 0.456
+        }
+      },
+      "17": {
+        "answer": "D",
+        "confidence": 0.74,
+        "status": "single",
+        "scores": {
+          "A": 0.401,
+          "B": 0.434,
+          "C": 0.395,
+          "D": 0.74
+        }
+      },
+      "18": {
+        "answer": "B",
+        "confidence": 0.743,
+        "status": "single",
+        "scores": {
+          "A": 0.401,
+          "B": 0.743,
+          "C": 0.402,
+          "D": 0.452
+        }
+      },
+      "19": {
+        "answer": "C",
+        "confidence": 0.658,
+        "status": "single",
+        "scores": {
+          "A": 0.401,
+          "B": 0.397,
+          "C": 0.658,
+          "D": 0.432
+        }
+      },
+      "20": {
+        "answer": "A",
+        "confidence": 0.667,
+        "status": "single",
+        "scores": {
+          "A": 0.667,
+          "B": 0.432,
+          "C": 0.414,
+          "D": 0.473
+        }
+      },
+      "21": {
+        "answer": "D",
+        "confidence": 0.727,
+        "status": "single",
+        "scores": {
+          "A": 0.387,
+          "B": 0.427,
+          "C": 0.368,
+          "D": 0.727
+        }
+      },
+      "22": {
+        "answer": "C",
+        "confidence": 0.719,
+        "status": "single",
+        "scores": {
+          "A": 0.424,
+          "B": 0.44,
+          "C": 0.719,
+          "D": 0.438
+        }
+      },
+      "23": {
+        "answer": "A",
+        "confidence": 0.721,
+        "status": "single",
+        "scores": {
+          "A": 0.721,
+          "B": 0.439,
+          "C": 0.376,
+          "D": 0.458
+        }
+      },
+      "24": {
+        "answer": "C",
+        "confidence": 0.693,
+        "status": "single",
+        "scores": {
+          "A": 0.417,
+          "B": 0.451,
+          "C": 0.693,
+          "D": 0.478
+        }
+      },
+      "25": {
+        "answer": "D",
+        "confidence": 0.579,
+        "status": "single",
+        "scores": {
+          "A": 0.41,
+          "B": 0.43,
+          "C": 0.402,
+          "D": 0.579
+        }
+      },
+      "26": {
+        "answer": "B",
+        "confidence": 0.661,
+        "status": "single",
+        "scores": {
+          "A": 0.414,
+          "B": 0.661,
+          "C": 0.389,
+          "D": 0.427
+        }
+      },
+      "27": {
+        "answer": "A",
+        "confidence": 0.732,
+        "status": "single",
+        "scores": {
+          "A": 0.732,
+          "B": 0.409,
+          "C": 0.395,
+          "D": 0.415
+        }
+      },
+      "28": {
+        "answer": "C",
+        "confidence": 0.689,
+        "status": "single",
+        "scores": {
+          "A": 0.413,
+          "B": 0.443,
+          "C": 0.689,
+          "D": 0.43
+        }
+      },
+      "29": {
+        "answer": "A",
+        "confidence": 0.736,
+        "status": "single",
+        "scores": {
+          "A": 0.736,
+          "B": 0.426,
+          "C": 0.38,
+          "D": 0.41
+        }
+      },
+      "30": {
+        "answer": "C",
+        "confidence": 0.753,
+        "status": "single",
+        "scores": {
+          "A": 0.418,
+          "B": 0.434,
+          "C": 0.753,
+          "D": 0.426
+        }
+      },
+      "31": {
+        "answer": "A",
+        "confidence": 0.773,
+        "status": "single",
+        "scores": {
+          "A": 0.773,
+          "B": 0.418,
+          "C": 0.372,
+          "D": 0.431
+        }
+      },
+      "32": {
+        "answer": "C",
+        "confidence": 0.714,
+        "status": "single",
+        "scores": {
+          "A": 0.417,
+          "B": 0.441,
+          "C": 0.714,
+          "D": 0.447
+        }
+      },
+      "33": {
+        "answer": "B",
+        "confidence": 0.715,
+        "status": "single",
+        "scores": {
+          "A": 0.402,
+          "B": 0.715,
+          "C": 0.402,
+          "D": 0.447
+        }
+      },
+      "34": {
+        "answer": "B",
+        "confidence": 0.659,
+        "status": "single",
+        "scores": {
+          "A": 0.404,
+          "B": 0.659,
+          "C": 0.441,
+          "D": 0.466
+        }
+      },
+      "35": {
+        "answer": "D",
+        "confidence": 0.736,
+        "status": "single",
+        "scores": {
+          "A": 0.388,
+          "B": 0.418,
+          "C": 0.409,
+          "D": 0.736
+        }
+      },
+      "36": {
+        "answer": "D",
+        "confidence": 0.712,
+        "status": "single",
+        "scores": {
+          "A": 0.413,
+          "B": 0.424,
+          "C": 0.424,
+          "D": 0.712
+        }
+      },
+      "37": {
+        "answer": "D",
+        "confidence": 0.766,
+        "status": "single",
+        "scores": {
+          "A": 0.383,
+          "B": 0.427,
+          "C": 0.402,
+          "D": 0.766
+        }
+      },
+      "38": {
+        "answer": "A",
+        "confidence": 0.665,
+        "status": "single",
+        "scores": {
+          "A": 0.665,
+          "B": 0.423,
+          "C": 0.423,
+          "D": 0.474
+        }
+      },
+      "39": {
+        "answer": "A",
+        "confidence": 0.704,
+        "status": "single",
+        "scores": {
+          "A": 0.704,
+          "B": 0.432,
+          "C": 0.418,
+          "D": 0.456
+        }
+      },
+      "40": {
+        "answer": "A",
+        "confidence": 0.639,
+        "status": "single",
+        "scores": {
+          "A": 0.639,
+          "B": 0.444,
+          "C": 0.441,
+          "D": 0.465
+        }
+      }
+    },
+    "summary": {
+      "total": 40,
+      "single": 39,
+      "multi": 1,
+      "blank": 0
+    }
+  },
+  "ap": {
+    "answers": {
+      "1": {
+        "answer": "A",
+        "confidence": 0.648,
+        "status": "single",
+        "scores": {
+          "A": 0.648,
+          "B": 0.441,
+          "C": 0.417,
+          "D": 0.467
+        }
+      },
+      "2": {
+        "answer": "A",
+        "confidence": 0.763,
+        "status": "single",
+        "scores": {
+          "A": 0.763,
+          "B": 0.451,
+          "C": 0.391,
+          "D": 0.443
+        }
+      },
+      "3": {
+        "answer": "B",
+        "confidence": 0.738,
+        "status": "single",
+        "scores": {
+          "A": 0.417,
+          "B": 0.738,
+          "C": 0.409,
+          "D": 0.466
+        }
+      },
+      "4": {
+        "answer": "B",
+        "confidence": 0.746,
+        "status": "single",
+        "scores": {
+          "A": 0.379,
+          "B": 0.746,
+          "C": 0.404,
+          "D": 0.441
+        }
+      },
+      "5": {
+        "answer": "C",
+        "confidence": 0.711,
+        "status": "single",
+        "scores": {
+          "A": 0.409,
+          "B": 0.452,
+          "C": 0.711,
+          "D": 0.471
+        }
+      },
+      "6": {
+        "answer": "C",
+        "confidence": 0.669,
+        "status": "single",
+        "scores": {
+          "A": 0.376,
+          "B": 0.454,
+          "C": 0.669,
+          "D": 0.445
+        }
+      },
+      "7": {
+        "answer": "D",
+        "confidence": 0.758,
+        "status": "single",
+        "scores": {
+          "A": 0.397,
+          "B": 0.447,
+          "C": 0.432,
+          "D": 0.758
+        }
+      },
+      "8": {
+        "answer": "D",
+        "confidence": 0.727,
+        "status": "single",
+        "scores": {
+          "A": 0.363,
+          "B": 0.46,
+          "C": 0.383,
+          "D": 0.727
+        }
+      },
+      "9": {
+        "answer": "D",
+        "confidence": 0.771,
+        "status": "single",
+        "scores": {
+          "A": 0.404,
+          "B": 0.447,
+          "C": 0.411,
+          "D": 0.771
+        }
+      },
+      "10": {
+        "answer": "C",
+        "confidence": 0.719,
+        "status": "single",
+        "scores": {
+          "A": 0.388,
+          "B": 0.439,
+          "C": 0.719,
+          "D": 0.447
+        }
+      },
+      "11": {
+        "answer": "B",
+        "confidence": 0.749,
+        "status": "single",
+        "scores": {
+          "A": 0.389,
+          "B": 0.749,
+          "C": 0.398,
+          "D": 0.443
+        }
+      },
+      "12": {
+        "answer": "A",
+        "confidence": 0.68,
+        "status": "single",
+        "scores": {
+          "A": 0.68,
+          "B": 0.414,
+          "C": 0.361,
+          "D": 0.447
+        }
+      },
+      "13": {
+        "answer": "C",
+        "confidence": 0.772,
+        "status": "single",
+        "scores": {
+          "A": 0.388,
+          "B": 0.434,
+          "C": 0.772,
+          "D": 0.445
+        }
+      },
+      "14": {
+        "answer": "B",
+        "confidence": 0.73,
+        "status": "single",
+        "scores": {
+          "A": 0.385,
+          "B": 0.73,
+          "C": 0.376,
+          "D": 0.438
+        }
+      },
+      "15": {
+        "answer": "A",
+        "confidence": 0.751,
+        "status": "single",
+        "scores": {
+          "A": 0.751,
+          "B": 0.44,
+          "C": 0.408,
+          "D": 0.453
+        }
+      },
+      "16": {
+        "answer": "D",
+        "confidence": 0.73,
+        "status": "single",
+        "scores": {
+          "A": 0.374,
+          "B": 0.439,
+          "C": 0.405,
+          "D": 0.73
+        }
+      },
+      "17": {
+        "answer": "D",
+        "confidence": 0.72,
+        "status": "single",
+        "scores": {
+          "A": 0.405,
+          "B": 0.436,
+          "C": 0.387,
+          "D": 0.72
+        }
+      },
+      "18": {
+        "answer": "D",
+        "confidence": 0.712,
+        "status": "single",
+        "scores": {
+          "A": 0.385,
+          "B": 0.436,
+          "C": 0.383,
+          "D": 0.712
+        }
+      },
+      "19": {
+        "answer": "B",
+        "confidence": 0.85,
+        "status": "single",
+        "scores": {
+          "A": 0.41,
+          "B": 0.85,
+          "C": 0.393,
+          "D": 0.434
+        }
+      },
+      "20": {
+        "answer": "B",
+        "confidence": 0.747,
+        "status": "single",
+        "scores": {
+          "A": 0.389,
+          "B": 0.747,
+          "C": 0.384,
+          "D": 0.43
+        }
+      },
+      "21": {
+        "answer": "C",
+        "confidence": 0.74,
+        "status": "single",
+        "scores": {
+          "A": 0.38,
+          "B": 0.426,
+          "C": 0.74,
+          "D": 0.413
+        }
+      },
+      "22": {
+        "answer": "C",
+        "confidence": 0.694,
+        "status": "single",
+        "scores": {
+          "A": 0.387,
+          "B": 0.422,
+          "C": 0.694,
+          "D": 0.44
+        }
+      },
+      "23": {
+        "answer": "A",
+        "confidence": 0.71,
+        "status": "single",
+        "scores": {
+          "A": 0.71,
+          "B": 0.409,
+          "C": 0.41,
+          "D": 0.458
+        }
+      },
+      "24": {
+        "answer": "A",
+        "confidence": 0.77,
+        "status": "single",
+        "scores": {
+          "A": 0.77,
+          "B": 0.443,
+          "C": 0.411,
+          "D": 0.448
+        }
+      },
+      "25": {
+        "answer": "A",
+        "confidence": 0.729,
+        "status": "single",
+        "scores": {
+          "A": 0.729,
+          "B": 0.418,
+          "C": 0.384,
+          "D": 0.397
+        }
+      },
+      "26": {
+        "answer": "B",
+        "confidence": 0.665,
+        "status": "single",
+        "scores": {
+          "A": 0.379,
+          "B": 0.665,
+          "C": 0.37,
+          "D": 0.376
+        }
+      },
+      "27": {
+        "answer": "C",
+        "confidence": 0.694,
+        "status": "single",
+        "scores": {
+          "A": 0.401,
+          "B": 0.421,
+          "C": 0.694,
+          "D": 0.408
+        }
+      },
+      "28": {
+        "answer": "D",
+        "confidence": 0.716,
+        "status": "single",
+        "scores": {
+          "A": 0.409,
+          "B": 0.422,
+          "C": 0.388,
+          "D": 0.716
+        }
+      },
+      "29": {
+        "answer": "C",
+        "confidence": 0.643,
+        "status": "single",
+        "scores": {
+          "A": 0.393,
+          "B": 0.395,
+          "C": 0.643,
+          "D": 0.372
+        }
+      },
+      "30": {
+        "answer": "B",
+        "confidence": 0.602,
+        "status": "single",
+        "scores": {
+          "A": 0.389,
+          "B": 0.602,
+          "C": 0.362,
+          "D": 0.402
+        }
+      },
+      "31": {
+        "answer": "A",
+        "confidence": 0.674,
+        "status": "single",
+        "scores": {
+          "A": 0.674,
+          "B": 0.398,
+          "C": 0.382,
+          "D": 0.398
+        }
+      },
+      "32": {
+        "answer": "C",
+        "confidence": 0.701,
+        "status": "single",
+        "scores": {
+          "A": 0.398,
+          "B": 0.419,
+          "C": 0.701,
+          "D": 0.4
+        }
+      },
+      "33": {
+        "answer": "A",
+        "confidence": 0.638,
+        "status": "single",
+        "scores": {
+          "A": 0.638,
+          "B": 0.422,
+          "C": 0.408,
+          "D": 0.445
+        }
+      },
+      "34": {
+        "answer": "B",
+        "confidence": 0.728,
+        "status": "single",
+        "scores": {
+          "A": 0.339,
+          "B": 0.728,
+          "C": 0.405,
+          "D": 0.423
+        }
+      },
+      "35": {
+        "answer": "C",
+        "confidence": 0.697,
+        "status": "single",
+        "scores": {
+          "A": 0.361,
+          "B": 0.385,
+          "C": 0.697,
+          "D": 0.423
+        }
+      },
+      "36": {
+        "answer": "B",
+        "confidence": 0.639,
+        "status": "single",
+        "scores": {
+          "A": 0.382,
+          "B": 0.639,
+          "C": 0.391,
+          "D": 0.444
+        }
+      },
+      "37": {
+        "answer": "A",
+        "confidence": 0.711,
+        "status": "single",
+        "scores": {
+          "A": 0.711,
+          "B": 0.396,
+          "C": 0.391,
+          "D": 0.432
+        }
+      },
+      "38": {
+        "answer": "D",
+        "confidence": 0.693,
+        "status": "single",
+        "scores": {
+          "A": 0.387,
+          "B": 0.411,
+          "C": 0.389,
+          "D": 0.693
+        }
+      },
+      "39": {
+        "answer": "B",
+        "confidence": 0.647,
+        "status": "single",
+        "scores": {
+          "A": 0.388,
+          "B": 0.647,
+          "C": 0.387,
+          "D": 0.441
+        }
+      },
+      "40": {
+        "answer": "A",
+        "confidence": 0.641,
+        "status": "single",
+        "scores": {
+          "A": 0.641,
+          "B": 0.418,
+          "C": 0.392,
+          "D": 0.456
+        }
+      }
+    },
+    "summary": {
+      "total": 40,
+      "single": 40,
+      "multi": 0,
+      "blank": 0
+    }
+  }
+}

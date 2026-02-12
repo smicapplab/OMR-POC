@@ -3,12 +3,13 @@ import numpy as np
 from collections import defaultdict
 import json
 
-IMAGE_PATH = "template/answer2.png"
+IMAGE_PATH = "../template/answer3.png"
 
 # ---- ROI Config (must match calibration model) ----
 ROI_WIDTH = 32
 ROI_HEIGHT = 24
-FILL_THRESHOLD = 0.25
+FILL_THRESHOLD = 0.20
+DOMINANCE_GAP = 0.07  # minimum difference between top and second score
 
 # ---- Calibration clicks (6 per subject) ----
 # Order per subject:
@@ -72,7 +73,16 @@ def build_subject_grid(subject_clicks):
 def detect_answers():
     img = cv2.imread(IMAGE_PATH)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)
+    gray = cv2.equalizeHist(gray)
+
+    thresh = cv2.adaptiveThreshold(
+        gray,
+        255,
+        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+        cv2.THRESH_BINARY_INV,
+        31,
+        5
+    )
 
     results = {}
 
@@ -137,23 +147,35 @@ def detect_answers():
                 subject_result["summary"]["single"] += 1
 
             else:
-                # More than one bubble above threshold
+                # Apply dominance gap rule
                 top_choice, top_conf = marked_choices[0]
-                subject_result["answers"][str(q)] = {
-                    "answer": top_choice,
-                    "confidence": round(top_conf, 3),
-                    "status": "multi",
-                    "scores": scores
-                }
-                subject_result["summary"]["multi"] += 1
+                second_choice, second_conf = marked_choices[1]
+
+                if (top_conf - second_conf) >= DOMINANCE_GAP:
+                    subject_result["answers"][str(q)] = {
+                        "answer": top_choice,
+                        "confidence": round(top_conf, 3),
+                        "status": "single",
+                        "scores": scores
+                    }
+                    subject_result["summary"]["single"] += 1
+                else:
+                    subject_result["answers"][str(q)] = {
+                        "answer": top_choice,
+                        "confidence": round(top_conf, 3),
+                        "status": "multi",
+                        "scores": scores
+                    }
+                    subject_result["summary"]["multi"] += 1
 
         results[subject] = subject_result
-
+    
     return results
 
 
 if __name__ == "__main__":
     results = detect_answers()
+    #print(results)
 
     with open("results.json", "w") as f:
         json.dump(results, f, indent=2)
