@@ -2,7 +2,7 @@ import time
 from pathlib import Path
 from student.read_student_info import read_student_info
 from school.previous.prev_read_info import read_previous_school_info
-from school.current.read_info import read_current_school_info
+from school.current.curr_read_info import read_current_school_info
 from answers.read_answers import detect_answers
 
 import json
@@ -43,14 +43,14 @@ def extract_test_data(file_path: Path):
     if img is None:
         raise ValueError(f"Failed to load image: {file_path}")
 
-    student_info = read_student_info(img)
-    print( student_info )
+    # student_info = read_student_info(img)
+    # print( student_info )
 
     # prev_school = read_previous_school_info(img)
     # print( prev_school )
 
-    # curr_school = read_current_school_info(img)
-    # print( curr_school )
+    curr_school = read_current_school_info(img)
+    print( curr_school )
 
     # answers = detect_answers(img)
     # print( answers )

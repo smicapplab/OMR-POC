@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
-from pathlib import Path
-from school.current.overlay_test import (
+from school.current.curr_overlay_test import (
     build_region_grid,
     build_division_grid,
     build_school_id_grid,
@@ -12,30 +11,29 @@ from school.current.overlay_test import (
 # =========================
 # CONFIG
 # =========================
-IMAGE_PATH = "template/answer3.png"
 
 FILL_THRESHOLD = 0.45
 DOMINANCE_GAP = 0.10
 
-REGION_ROWS = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-
-REGION_MAP = {
-    1: "REGION I",
-    2: "REGION II",
-    3: "REGION III",
-    4: "REGION IV-A",
-    5: "REGION V",
-    6: "REGION VI",
-    7: "REGION VII",
-    8: "REGION VIII",
-    9: "REGION IX",
-    10: "REGION X",
-    11: "REGION XI",
-    12: "REGION XII",
-    13: "NCR",
-    14: "CAR",
-    15: "BARMM"
-}
+REGION_ROWS = [
+    "REGION I",
+    "REGION II",
+    "REGION III",
+    "REGION IV-A",
+    "REGION V",
+    "REGION VI",
+    "REGION VII",
+    "REGION VIII",
+    "REGION IX",
+    "REGION X",
+    "REGION XI",
+    "REGION XII",
+    "NCR",
+    "CAR",
+    "BARMM",
+    "CARAGA",
+    "NIR"
+]
 DIGIT_ROWS = list("0123456789")
 
 SCHOOL_TYPE_ROWS = [
@@ -77,12 +75,12 @@ def decide_selection(scores: dict, threshold=FILL_THRESHOLD):
     second_score = sorted_items[1][1] if len(sorted_items) > 1 else 0
 
     if top_score < threshold:
-        return None, top_score, "blank"
+        return None, top_score
 
     if (top_score - second_score) < DOMINANCE_GAP:
-        return None, top_score, "multi"
+        return None, top_score
 
-    return top_val, top_score, "single"
+    return top_val, top_score
 
 
 # =========================
@@ -108,17 +106,16 @@ def read_grid(gray_img, grid, rows, threshold=FILL_THRESHOLD):
         for row_idx, (x, y) in grid.items():
             roi = gray_img[int(y-14):int(y+14), int(x-14):int(x+14)]
             score = compute_fill_score(roi)
-            scores[rows[row_idx]] = round(score, 3)
+            scores[rows[row_idx]] = round(score, 2)
 
-        selected, confidence, status = decide_selection(scores, threshold)
+        selected, confidence = decide_selection(scores, threshold)
 
         if selected:
             decoded += selected
 
         results[0] = {
             "selected": selected,
-            "confidence": round(confidence, 3),
-            "status": status,
+            "confidence": round(confidence, 2),
             "scores": scores
         }
 
@@ -133,17 +130,16 @@ def read_grid(gray_img, grid, rows, threshold=FILL_THRESHOLD):
         for row_idx, (x, y) in col_dict.items():
             roi = gray_img[int(y-14):int(y+14), int(x-14):int(x+14)]
             score = compute_fill_score(roi)
-            scores[rows[row_idx]] = round(score, 3)
+            scores[rows[row_idx]] = round(score, 2)
 
-        selected, confidence, status = decide_selection(scores, threshold)
+        selected, confidence = decide_selection(scores, threshold)
 
         if selected:
             decoded += selected
 
         results[col_idx] = {
             "selected": selected,
-            "confidence": round(confidence, 3),
-            "status": status,
+            "confidence": round(confidence, 2),
             "scores": scores
         }
 
@@ -167,20 +163,13 @@ def read_current_school_info(
     school_type_grid = build_school_type_grid()
 
 
-    # image_path = Path(image_path)
-    # image = cv2.imread(str(image_path))
-
     if img is None:
         raise ValueError("Unable to load image.")
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    region_value, region_details = read_grid(gray, region_grid, REGION_ROWS, threshold=0.40)
+    region_value, region_details = read_grid(gray, region_grid, REGION_ROWS, threshold=0.38)
 
-    # Convert region letter to mapped region name
-    if region_value:
-        region_index = REGION_ROWS.index(region_value) + 1
-        region_value = REGION_MAP.get(region_index, region_value)
     division_value, division_details = read_grid(gray, division_grid, DIGIT_ROWS, threshold=0.42)
     school_id_value, school_id_details = read_grid(gray, school_id_grid, DIGIT_ROWS, threshold=0.42)
 
@@ -191,17 +180,63 @@ def read_current_school_info(
         threshold=0.40
     )
 
+    def wrap_field(answer, details_dict):
+        """
+        Convert raw grid output into deterministic schema:
+        ✔ answer
+        ✔ confidence (2 decimals, averaged if multi-column)
+        ✔ review_required (confidence < 0.50)
+        ✔ details with standardized keys
+        """
+        if not details_dict:
+            return {
+                "answer": answer,
+                "confidence": 0.00,
+                "review_required": True,
+                "details": {"scores": {}}
+            }
+
+        confidences = []
+        digits = []
+
+        # multi-column style (true multi-column = more than 1 column)
+        if len(details_dict) > 1:
+            for idx in sorted(details_dict.keys()):
+                col = details_dict[idx]
+                conf = round(float(col.get("confidence", 0)), 2)
+                confidences.append(conf)
+
+                digits.append({
+                    "selected": col.get("selected"),
+                    "confidence": conf,
+                    "scores": col.get("scores", {})
+                })
+
+            final_conf = round(sum(confidences) / len(confidences), 2) if confidences else 0.00
+
+            return {
+                "answer": answer,
+                "confidence": final_conf,
+                "review_required": final_conf < 0.50,
+                "details": {"digits": digits}
+            }
+
+        # single-column style (e.g., region / school_type)
+        col = list(details_dict.values())[0]
+        conf = round(float(col.get("confidence", 0)), 2)
+
+        return {
+            "answer": answer,
+            "confidence": conf,
+            "review_required": conf < 0.50,
+            "details": {"scores": col.get("scores", {})}
+        }
+
     return {
-        "region": region_value,
-        "division": division_value,
-        "school_id": school_id_value,
-        "school_type": school_type_value,
-        # "details": {
-        #     "region": region_details,
-        #     "division": division_details,
-        #     "school_id": school_id_details,
-        #     "school_type": school_type_details
-        # }
+        "region": wrap_field(region_value, region_details),
+        "division": wrap_field(division_value, division_details),
+        "school_id": wrap_field(school_id_value, school_id_details),
+        "school_type": wrap_field(school_type_value, school_type_details),
     }
 
 
