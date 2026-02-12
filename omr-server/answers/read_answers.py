@@ -8,6 +8,7 @@ ROI_WIDTH = 32
 ROI_HEIGHT = 24
 FILL_THRESHOLD = 0.20
 DOMINANCE_GAP = 0.07  # minimum difference between top and second score
+REVIEW_THRESHOLD = 0.60
 
 # ---- Calibration clicks (6 per subject) ----
 # Order per subject:
@@ -94,16 +95,10 @@ def detect_answers(
 
         subject_result = {
             "answers": {},
-            # "summary": {
-            #     "total": len(grid),
-            #     "single": 0,
-            #     "multi": 0,
-            #     "blank": 0
-            # }
         }
 
         for q in sorted(grid.keys()):
-            # scores = {}
+            scores = {}
             marked_choices = []
 
             for choice, (x, y) in grid[q].items():
@@ -114,69 +109,49 @@ def detect_answers(
 
                 roi = thresh[y1:y2, x1:x2]
                 if roi.size == 0:
+                    scores[choice] = 0.0
                     continue
 
                 dark_pixels = cv2.countNonZero(roi)
                 fill_ratio = dark_pixels / float(roi.size)
-                # scores[choice] = round(fill_ratio, 3)
+
+                scores[choice] = round(float(fill_ratio), 2)
 
                 if fill_ratio > FILL_THRESHOLD:
                     marked_choices.append((choice, fill_ratio))
 
-            # Sort by strongest fill
+            # Sort by raw (non-rounded) confidence for decision logic
             marked_choices.sort(key=lambda x: x[1], reverse=True)
 
             if len(marked_choices) == 0:
-                subject_result["answers"][str(q)] = {
-                    "answer": None,
-                    "confidence": 0,
-                    "status": "blank",
-                    # "scores": scores
-                }
-                subject_result["summary"]["blank"] += 1
-
-            elif len(marked_choices) == 1:
-                choice, confidence = marked_choices[0]
-                subject_result["answers"][str(q)] = {
-                    "answer": choice,
-                    "confidence": round(confidence, 3),
-                    "status": "single",
-                    # "scores": scores
-                }
-                # subject_result["summary"]["single"] += 1
-
+                answer = None
+                confidence = 0.0
+                review_required = True
             else:
-                # Apply dominance gap rule
                 top_choice, top_conf = marked_choices[0]
-                second_choice, second_conf = marked_choices[1]
 
-                if (top_conf - second_conf) >= DOMINANCE_GAP:
-                    subject_result["answers"][str(q)] = {
-                        "answer": top_choice,
-                        "confidence": round(top_conf, 3),
-                        "status": "single",
-                        # "scores": scores
-                    }
-                    # subject_result["summary"]["single"] += 1
+                if len(marked_choices) > 1:
+                    second_conf = marked_choices[1][1]
+                    dominance = top_conf - second_conf
+                    if dominance < DOMINANCE_GAP:
+                        review_required = True
+                    else:
+                        review_required = top_conf < REVIEW_THRESHOLD
                 else:
-                    subject_result["answers"][str(q)] = {
-                        "answer": top_choice,
-                        "confidence": round(top_conf, 3),
-                        "status": "multi",
-                        # "scores": scores
-                    }
-                    # subject_result["summary"]["multi"] += 1
+                    review_required = top_conf < REVIEW_THRESHOLD
+
+                answer = top_choice
+                confidence = round(float(top_conf), 2)
+
+            subject_result["answers"][str(q)] = {
+                "answer": answer,
+                "confidence": round(float(confidence), 2),
+                "review_required": review_required,
+                "details": {
+                    "scores": scores
+                }
+            }
 
         results[subject] = subject_result
     
     return results
-
-
-# if __name__ == "__main__":
-#     results = detect_answers()
-#     #print(results)
-
-#     with open("results.json", "w") as f:
-#         json.dump(results, f, indent=2)
-
-#     print("Results saved to results.json")

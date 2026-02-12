@@ -49,11 +49,11 @@ def extract_test_data(file_path: Path):
     # prev_school = read_previous_school_info(img)
     # print( prev_school )
 
-    curr_school = read_current_school_info(img)
-    print( curr_school )
+    # curr_school = read_current_school_info(img)
+    # print( curr_school )
 
-    # answers = detect_answers(img)
-    # print( answers )
+    answers = detect_answers(img)
+    print( answers )
 
     # Simulate processing delay
     time.sleep(1)
