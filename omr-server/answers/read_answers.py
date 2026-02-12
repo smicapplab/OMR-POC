@@ -1,7 +1,5 @@
 import cv2
 import numpy as np
-from collections import defaultdict
-import json
 
 IMAGE_PATH = "../template/answer3.png"
 
@@ -70,8 +68,9 @@ def build_subject_grid(subject_clicks):
     return grid
 
 
-def detect_answers():
-    img = cv2.imread(IMAGE_PATH)
+def detect_answers(
+    img
+):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
 
@@ -95,16 +94,16 @@ def detect_answers():
 
         subject_result = {
             "answers": {},
-            "summary": {
-                "total": len(grid),
-                "single": 0,
-                "multi": 0,
-                "blank": 0
-            }
+            # "summary": {
+            #     "total": len(grid),
+            #     "single": 0,
+            #     "multi": 0,
+            #     "blank": 0
+            # }
         }
 
         for q in sorted(grid.keys()):
-            scores = {}
+            # scores = {}
             marked_choices = []
 
             for choice, (x, y) in grid[q].items():
@@ -119,7 +118,7 @@ def detect_answers():
 
                 dark_pixels = cv2.countNonZero(roi)
                 fill_ratio = dark_pixels / float(roi.size)
-                scores[choice] = round(fill_ratio, 3)
+                # scores[choice] = round(fill_ratio, 3)
 
                 if fill_ratio > FILL_THRESHOLD:
                     marked_choices.append((choice, fill_ratio))
@@ -132,7 +131,7 @@ def detect_answers():
                     "answer": None,
                     "confidence": 0,
                     "status": "blank",
-                    "scores": scores
+                    # "scores": scores
                 }
                 subject_result["summary"]["blank"] += 1
 
@@ -142,9 +141,9 @@ def detect_answers():
                     "answer": choice,
                     "confidence": round(confidence, 3),
                     "status": "single",
-                    "scores": scores
+                    # "scores": scores
                 }
-                subject_result["summary"]["single"] += 1
+                # subject_result["summary"]["single"] += 1
 
             else:
                 # Apply dominance gap rule
@@ -156,28 +155,28 @@ def detect_answers():
                         "answer": top_choice,
                         "confidence": round(top_conf, 3),
                         "status": "single",
-                        "scores": scores
+                        # "scores": scores
                     }
-                    subject_result["summary"]["single"] += 1
+                    # subject_result["summary"]["single"] += 1
                 else:
                     subject_result["answers"][str(q)] = {
                         "answer": top_choice,
                         "confidence": round(top_conf, 3),
                         "status": "multi",
-                        "scores": scores
+                        # "scores": scores
                     }
-                    subject_result["summary"]["multi"] += 1
+                    # subject_result["summary"]["multi"] += 1
 
         results[subject] = subject_result
     
     return results
 
 
-if __name__ == "__main__":
-    results = detect_answers()
-    #print(results)
+# if __name__ == "__main__":
+#     results = detect_answers()
+#     #print(results)
 
-    with open("results.json", "w") as f:
-        json.dump(results, f, indent=2)
+#     with open("results.json", "w") as f:
+#         json.dump(results, f, indent=2)
 
-    print("Results saved to results.json")
+#     print("Results saved to results.json")

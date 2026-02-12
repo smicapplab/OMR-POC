@@ -1,6 +1,13 @@
 import cv2
 import numpy as np
 from pathlib import Path
+from school.current.overlay_test import (
+    build_region_grid,
+    build_division_grid,
+    build_school_id_grid,
+    build_school_type_grid
+)
+
 
 # =========================
 # CONFIG
@@ -148,20 +155,25 @@ def read_grid(gray_img, grid, rows, threshold=FILL_THRESHOLD):
 # =========================
 
 def read_current_school_info(
-    image_path,
-    region_grid,
-    division_grid,
-    school_id_grid,
-    school_type_grid
+    img
+    # region_grid,
+    # division_grid,
+    # school_id_grid,
+    # school_type_grid
 ):
+    region_grid = build_region_grid()
+    division_grid = build_division_grid()
+    school_id_grid = build_school_id_grid()
+    school_type_grid = build_school_type_grid()
 
-    image_path = Path(image_path)
-    image = cv2.imread(str(image_path))
 
-    if image is None:
+    # image_path = Path(image_path)
+    # image = cv2.imread(str(image_path))
+
+    if img is None:
         raise ValueError("Unable to load image.")
 
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     region_value, region_details = read_grid(gray, region_grid, REGION_ROWS, threshold=0.40)
 
@@ -184,12 +196,12 @@ def read_current_school_info(
         "division": division_value,
         "school_id": school_id_value,
         "school_type": school_type_value,
-        "details": {
-            "region": region_details,
-            "division": division_details,
-            "school_id": school_id_details,
-            "school_type": school_type_details
-        }
+        # "details": {
+        #     "region": region_details,
+        #     "division": division_details,
+        #     "school_id": school_id_details,
+        #     "school_type": school_type_details
+        # }
     }
 
 
@@ -197,33 +209,33 @@ def read_current_school_info(
 # OPTIONAL STANDALONE TEST
 # =========================
 
-if __name__ == "__main__":
-    from overlay_test import (
-        build_region_grid,
-        build_division_grid,
-        build_school_id_grid,
-        build_school_type_grid
-    )
+# if __name__ == "__main__":
+#     from overlay_test import (
+#         build_region_grid,
+#         build_division_grid,
+#         build_school_id_grid,
+#         build_school_type_grid
+#     )
 
-    img = cv2.imread(IMAGE_PATH)
+#     img = cv2.imread(IMAGE_PATH)
 
-    if img is None:
-        print(f"Failed to load image: {IMAGE_PATH}")
-    else:
-        print("Image loaded successfully.")
+#     if img is None:
+#         print(f"Failed to load image: {IMAGE_PATH}")
+#     else:
+#         print("Image loaded successfully.")
 
-        region_grid = build_region_grid()
-        division_grid = build_division_grid()
-        school_id_grid = build_school_id_grid()
-        school_type_grid = build_school_type_grid()
+#         region_grid = build_region_grid()
+#         division_grid = build_division_grid()
+#         school_id_grid = build_school_id_grid()
+#         school_type_grid = build_school_type_grid()
 
-        result = read_current_school_info(
-            IMAGE_PATH,
-            region_grid,
-            division_grid,
-            school_id_grid,
-            school_type_grid
-        )
+#         result = read_current_school_info(
+#             IMAGE_PATH,
+#             region_grid,
+#             division_grid,
+#             school_id_grid,
+#             school_type_grid
+#         )
 
-        print("\nDetected Current School Info:")
-        print(result)
+#         print("\nDetected Current School Info:")
+#         print(result)
