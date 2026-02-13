@@ -55,11 +55,6 @@ def extract_test_data(file_path: Path):
     answers = detect_answers(img)
     print( answers )
 
-    # Simulate processing delay
-    time.sleep(1)
-
-    # For testing failure, uncomment:
-    # raise Exception("Simulated OMR failure")
 
     print(f"[SUCCESS] {file_path.name}")
 
