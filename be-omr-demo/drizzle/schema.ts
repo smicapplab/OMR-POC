@@ -11,9 +11,8 @@ export const users = sqliteTable('users', {
     passwordHash: text('password_hash')
         .notNull(),
 
-    role: text('role', {
-        enum: ['admin', 'user'],
-    })
+    role: text('role')
+        .$type<'admin' | 'user'>()
         .notNull()
         .default('user'),
 
@@ -29,6 +28,12 @@ export const omrScans = sqliteTable('omr_scan', {
     fileName: text('file_name'),
     filePath: text('file_path'),
     fileUrl: text('file_url'),
+
+    // Processing status: pending | success | error
+    status: text('status')
+        .$type<'pending' | 'success' | 'error'>()
+        .notNull()
+        .default('pending'),
 
     // Raw full JSON payload for entire scan
     rawJson: text('raw_json').notNull(),

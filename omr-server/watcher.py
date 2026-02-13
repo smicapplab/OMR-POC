@@ -3,7 +3,7 @@ from pathlib import Path
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from processor import extract_test_data, wait_until_stable
-
+from db.persist_scan import update_scan_status
 
 class PNGHandler(FileSystemEventHandler):
     def __init__(self, bucket_path: Path):
@@ -28,10 +28,17 @@ class PNGHandler(FileSystemEventHandler):
         try:
             wait_until_stable(file_path)
 
-            extract_test_data(file_path)
+            scan_id = extract_test_data(file_path)
 
-            #target = self.success_path / file_path.name
-            #shutil.move(str(file_path), target)
+            target = self.success_path / file_path.name
+            shutil.move(str(file_path), target)
+
+            relative_path = f"bucket/success/{file_path.name}"
+            update_scan_status(
+                scan_id=scan_id,
+                new_file_path=Path(relative_path),
+                status="success",
+            )
 
             print(f"[MOVED] {file_path.name} → success/")
 
@@ -39,8 +46,16 @@ class PNGHandler(FileSystemEventHandler):
             print(f"[ERROR] {file_path.name}: {e}")
 
             if file_path.exists():
-                #target = self.error_path / file_path.name
-                #shutil.move(str(file_path), target)
+                target = self.error_path / file_path.name
+                shutil.move(str(file_path), target)
+
+                if 'scan_id' in locals():
+                    relative_path = f"bucket/error/{file_path.name}"
+                    update_scan_status(
+                        scan_id=scan_id,
+                        new_file_path=Path(relative_path),
+                        status="error",
+                    )
 
                 print(f"[MOVED] {file_path.name} → error/")
 

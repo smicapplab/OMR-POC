@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "a4636871-60f3-4bec-bdd2-ce30818be7ce",
+  "id": "f3550396-98c3-4ef1-be0e-d60ee8227af8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "current_school": {
@@ -138,6 +138,14 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'pending'"
         },
         "raw_json": {
           "name": "raw_json",

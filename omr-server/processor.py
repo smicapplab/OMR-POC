@@ -4,10 +4,8 @@ from student.read_student_info import read_student_info
 from school.previous.prev_read_info import read_previous_school_info
 from school.current.curr_read_info import read_current_school_info
 from answers.read_answers import detect_answers
-
-import json
+from db.persist_scan import persist_scan
 import cv2
-
 
 def wait_until_stable(file_path: Path, timeout: int = 10):
     """
@@ -29,7 +27,6 @@ def wait_until_stable(file_path: Path, timeout: int = 10):
         last_size = current_size
         time.sleep(0.5)
 
-
 def extract_test_data(file_path: Path):
     """
     Placeholder for OMR extraction logic.
@@ -37,26 +34,27 @@ def extract_test_data(file_path: Path):
     """
     print(f"[PROCESSING] {file_path}")
 
-
     # Load image using OpenCV
     img = cv2.imread(str(file_path))
     if img is None:
         raise ValueError(f"Failed to load image: {file_path}")
 
-    # student_info = read_student_info(img)
-    # print( student_info )
-
-    # prev_school = read_previous_school_info(img)
-    # print( prev_school )
-
-    # curr_school = read_current_school_info(img)
-    # print( curr_school )
-
+    student_info = read_student_info(img)
+    prev_school = read_previous_school_info(img)
+    curr_school = read_current_school_info(img)
     answers = detect_answers(img)
-    print( answers )
 
+    # Persist to database (scan + student)
+    scan_id = persist_scan(
+        file_path=file_path,
+        student_json=student_info,
+        prev_school_json=prev_school,
+        curr_school_json=curr_school,
+        answers_json=answers,
+    )
 
     print(f"[SUCCESS] {file_path.name}")
+    return scan_id
 
 
 def process_existing_pngs(directory: Path):

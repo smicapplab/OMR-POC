@@ -18,6 +18,7 @@ CREATE TABLE `omr_scan` (
 	`file_name` text,
 	`file_path` text,
 	`file_url` text,
+	`status` text DEFAULT 'pending' NOT NULL,
 	`raw_json` text NOT NULL,
 	`confidence` real,
 	`review_required` integer DEFAULT false NOT NULL,
