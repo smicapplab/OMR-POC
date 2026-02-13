@@ -1,7 +1,6 @@
 CREATE TABLE `current_school` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`scan_id` integer NOT NULL,
-	`raw_json` text NOT NULL,
 	`region` text,
 	`division` text,
 	`school_id` text,
@@ -19,9 +18,9 @@ CREATE TABLE `omr_scan` (
 	`file_path` text,
 	`file_url` text,
 	`status` text DEFAULT 'pending' NOT NULL,
-	`raw_json` text NOT NULL,
 	`confidence` real,
 	`review_required` integer DEFAULT false NOT NULL,
+	`raw_json` text,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 --> statement-breakpoint
@@ -30,7 +29,6 @@ CREATE INDEX `idx_scan_created` ON `omr_scan` (`created_at`);--> statement-break
 CREATE TABLE `previous_school` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`scan_id` integer NOT NULL,
-	`raw_json` text NOT NULL,
 	`school_id` text,
 	`math_grade` text,
 	`english_grade` text,
@@ -61,7 +59,7 @@ CREATE TABLE `student_answer` (
 	`answer` text,
 	`confidence` real,
 	`review_required` integer DEFAULT false NOT NULL,
-	`raw_json` text,
+	`is_correct` integer DEFAULT false NOT NULL,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	FOREIGN KEY (`scan_id`) REFERENCES `omr_scan`(`id`) ON UPDATE no action ON DELETE cascade
 );
@@ -72,7 +70,6 @@ CREATE UNIQUE INDEX `uq_scan_subject_question` ON `student_answer` (`scan_id`,`s
 CREATE TABLE `student` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`scan_id` integer NOT NULL,
-	`raw_json` text NOT NULL,
 	`last_name` text,
 	`first_name` text,
 	`middle_initial` text,

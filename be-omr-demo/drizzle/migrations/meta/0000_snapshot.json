@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "f3550396-98c3-4ef1-be0e-d60ee8227af8",
+  "id": "8cbed947-245c-4689-ab2c-de34e97d8a33",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "current_school": {
@@ -17,13 +17,6 @@
         "scan_id": {
           "name": "scan_id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "raw_json": {
-          "name": "raw_json",
-          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -147,13 +140,6 @@
           "autoincrement": false,
           "default": "'pending'"
         },
-        "raw_json": {
-          "name": "raw_json",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
         "confidence": {
           "name": "confidence",
           "type": "real",
@@ -168,6 +154,13 @@
           "notNull": true,
           "autoincrement": false,
           "default": false
+        },
+        "raw_json": {
+          "name": "raw_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         },
         "created_at": {
           "name": "created_at",
@@ -212,13 +205,6 @@
         "scan_id": {
           "name": "scan_id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "raw_json": {
-          "name": "raw_json",
-          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -424,12 +410,13 @@
           "autoincrement": false,
           "default": false
         },
-        "raw_json": {
-          "name": "raw_json",
-          "type": "text",
+        "is_correct": {
+          "name": "is_correct",
+          "type": "integer",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
         },
         "created_at": {
           "name": "created_at",
@@ -497,13 +484,6 @@
         "scan_id": {
           "name": "scan_id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "raw_json": {
-          "name": "raw_json",
-          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false

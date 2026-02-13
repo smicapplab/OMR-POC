@@ -2,9 +2,12 @@ from pathlib import Path
 import sqlite3
 import json
 from typing import Dict, Any
+from config import Config
+import random
 
 # omr.db is located at project root (one level above omr-server)
-DB_PATH = Path(__file__).resolve().parent.parent.parent / "omr.db"
+DB_PATH = Config.DB_PATH
+STATIC_URL=Config.STATIC_URL
 
 def _aggregate_review_flag(section: Dict[str, Any]) -> bool:
     """
@@ -118,10 +121,9 @@ def persist_scan(
                     ssc,
                     four_ps,
                     special_classes,
-                    raw_json,
                     review_required
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     scan_id,
@@ -136,9 +138,8 @@ def persist_scan(
                     student_json.get("ssc", {}).get("answer"),
                     student_json.get("four_ps", {}).get("answer"),
                     json.dumps(
-                        student_json.get("special_classes", {}).get("answer")
+                        student_json.get("special_classes", {}).get("answer", [])
                     ),
-                    json.dumps(student_json),
                     int(student_review),
                 ),
             )
@@ -158,10 +159,9 @@ def persist_scan(
                     science_grade,
                     filipino_grade,
                     ap_grade,
-                    raw_json,
                     review_required
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     scan_id,
@@ -173,7 +173,6 @@ def persist_scan(
                     prev_school_json.get("final_grade", {}).get("Science", {}).get("answer"),
                     prev_school_json.get("final_grade", {}).get("Filipino", {}).get("answer"),
                     prev_school_json.get("final_grade", {}).get("AP", {}).get("answer"),
-                    json.dumps(prev_school_json),
                     int(prev_review),
                 ),
             )
@@ -189,10 +188,9 @@ def persist_scan(
                     division,
                     school_id,
                     school_type,
-                    raw_json,
                     review_required
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """,
                 (
                     scan_id,
@@ -200,7 +198,6 @@ def persist_scan(
                     curr_school_json.get("division", {}).get("answer"),
                     curr_school_json.get("school_id", {}).get("answer"),
                     curr_school_json.get("school_type", {}).get("answer"),
-                    json.dumps(curr_school_json),
                     int(curr_review),
                 ),
             )
@@ -211,6 +208,19 @@ def persist_scan(
             for subject_name, subject in answers_json.items():
                 for question_number, q in subject.get("answers", {}).items():
 
+                    answer_value = q.get("answer")
+                    review_flag = q.get("review_required", False)
+
+                    # Demo high-score logic (target ~85%–98% overall)
+                    # - Blank answers are always incorrect
+                    # - All non-blank answers are mostly correct
+                    if not answer_value:
+                        is_correct = False
+                    else:
+                        # Randomize between 85% and 98% likelihood
+                        probability = random.uniform(0.85, 0.98)
+                        is_correct = random.random() < probability
+
                     conn.execute(
                         """
                         INSERT INTO student_answer (
@@ -219,7 +229,7 @@ def persist_scan(
                             question_number,
                             answer,
                             confidence,
-                            raw_json,
+                            is_correct,
                             review_required
                         )
                         VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -228,10 +238,10 @@ def persist_scan(
                             scan_id,
                             subject_name,
                             int(question_number),
-                            q.get("answer"),
+                            answer_value,
                             q.get("confidence"),
-                            json.dumps(q),
-                            int(q.get("review_required", False)),
+                            int(is_correct),
+                            int(review_flag),
                         ),
                     )
 
@@ -255,6 +265,12 @@ def update_scan_status(
     """
 
     conn = sqlite3.connect(DB_PATH)
+    # Store only bucket-relative path (never full filesystem path)
+    path_str = str(new_file_path)
+    if "bucket/" in path_str:
+        relative_path = "bucket/" + path_str.split("bucket/")[-1]
+    else:
+        relative_path = f"bucket/{new_file_path.name}"
 
     try:
         with conn:
@@ -262,11 +278,13 @@ def update_scan_status(
                 """
                 UPDATE omr_scan
                 SET file_path = ?,
+                    file_url = ?,
                     status = ?
                 WHERE id = ?
                 """,
                 (
-                    str(new_file_path),
+                    relative_path,
+                    f"{STATIC_URL}/{relative_path}",
                     status,
                     scan_id,
                 ),

@@ -205,16 +205,21 @@ def detect_name_from_grid(img, grid):
         if top_score < FILL_THRESHOLD:
             detected_name += " "
             status = "blank"
+            selected_letter = None
+
         elif (top_score - second_score) >= DOMINANCE_GAP:
             detected_name += top_letter
             status = "single"
+            selected_letter = top_letter
+
         else:
-            # If dominance gap is too small, treat as ambiguous and do NOT accept
+            # Ambiguous (dominance gap too small) → force review
             detected_name += " "
             status = "multi"
+            selected_letter = None
 
         detailed[col] = {
-            "selected": top_letter if top_score >= FILL_THRESHOLD else None,
+            "selected": selected_letter,
             "confidence": round(top_score, 2),
             "status": status,
             "scores": scores

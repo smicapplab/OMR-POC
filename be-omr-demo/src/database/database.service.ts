@@ -30,11 +30,23 @@ export class DatabaseService implements OnModuleDestroy {
         this.sqlite.pragma('foreign_keys = ON');
         this.sqlite.pragma('busy_timeout = 5000');
 
-        this._db = drizzle(this.sqlite, { schema }) as unknown as AppDatabase;
+        this._db = drizzle(this.sqlite, { schema }) as AppDatabase;
     }
 
     get db(): AppDatabase {
         return this._db;
+    }
+
+    all(query: Parameters<AppDatabase['all']>[0]): unknown[] {
+        return this._db.all(query);
+    }
+
+    get(query: Parameters<AppDatabase['get']>[0]) {
+        return this._db.get(query);
+    }
+
+    run(query: Parameters<AppDatabase['run']>[0]) {
+        return this._db.run(query);
     }
 
     isHealthy(): boolean {

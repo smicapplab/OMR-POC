@@ -14,17 +14,10 @@ export class AuthService {
         private readonly dbService: DatabaseService,
         private readonly jwtService: JwtService,
     ) {
-
-        console.log(process.env.JWT_SECRET)
-
     }
 
     async validateUser(email: string, password: string) {
-        console.log({ email, password })
         const db = this.dbService.db;
-
-        console.log(db)
-
         const result: (typeof users.$inferSelect)[] = await db
             .select()
             .from(users)
