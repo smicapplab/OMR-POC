@@ -49,9 +49,22 @@ Seeded demo accounts:
 | Email | Password | Role |
 |-------|----------|------|
 | storrefranca@gmail.com | password | admin |
-| aldrich.abrogena@dice205.com | password | user |
+| aldrich.abrogena@dice205.com | password | admin |
 
 Passwords are hashed using bcrypt.
+
+---
+
+# 🖼 Screenshots
+
+## 🔐 Login Page
+
+<img src="./screenshots/login.png" width="700" />
+
+## 📊 Dashboard
+
+<img src="./screenshots/dashboard.png" width="700" />
+
 
 ---
 
