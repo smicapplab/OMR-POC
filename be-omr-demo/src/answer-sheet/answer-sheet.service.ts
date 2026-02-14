@@ -37,10 +37,14 @@ export class AnswerSheetService {
                 lastName: students.lastName,
                 schoolId: currentSchools.schoolId,
                 createdAt: omrScans.createdAt,
+                studentsReviewRequired: sql<boolean>`coalesce(${students.reviewRequired}, false)`,
+                currentSchoolsReviewRequired: sql<boolean>`coalesce(${currentSchools.reviewRequired}, false)`,
+                previousSchoolsReviewRequired: sql<boolean>`coalesce(${previousSchools.reviewRequired}, false)`
             })
             .from(omrScans)
             .leftJoin(students, eq(students.scanId, omrScans.id))
-            .leftJoin(currentSchools, eq(currentSchools.scanId, omrScans.id));
+            .leftJoin(currentSchools, eq(currentSchools.scanId, omrScans.id))
+            .leftJoin(previousSchools, eq(previousSchools.scanId, omrScans.id));
 
         const keywordFilter = keyword
             ? or(
@@ -89,14 +93,15 @@ export class AnswerSheetService {
             .select({ total: sql<number>`count(*)` })
             .from(omrScans)
             .leftJoin(students, eq(students.scanId, omrScans.id))
-            .leftJoin(currentSchools, eq(currentSchools.scanId, omrScans.id));
+            .leftJoin(currentSchools, eq(currentSchools.scanId, omrScans.id))
+            .leftJoin(previousSchools, eq(previousSchools.scanId, omrScans.id));
 
         const totalResult = keywordFilter
             ? await totalBaseQuery.where(keywordFilter)
             : await totalBaseQuery;
 
         const total = Number(totalResult[0]?.total ?? 0);
-
+        
         return {
             page,
             limit,

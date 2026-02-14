@@ -4,4 +4,7 @@ export interface AnswerSheetListItem {
     lastName: string | null;
     schoolId: string | null;
     createdAt: Date;
+    studentsReviewRequired: boolean;
+    currentSchoolsReviewRequired: boolean;
+    previousSchoolsReviewRequired: boolean;
 }

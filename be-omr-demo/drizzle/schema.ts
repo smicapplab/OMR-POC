@@ -16,6 +16,12 @@ export const users = sqliteTable('users', {
         .notNull()
         .default('user'),
 
+    lastName: text('last_name')
+        .notNull(),
+
+    firstName: text('first_name')
+        .notNull(),
+
     createdAt: text('created_at')
         .notNull()
         .default(sql`CURRENT_TIMESTAMP`),

@@ -46,11 +46,16 @@ async function seed(): Promise<void> {
             email: 'storrefranca@gmail.com',
             passwordHash,
             role: 'admin',
+            firstName: "Steve",
+            lastName: "Pogi",
         },
         {
             email: 'aldrich.abrogena@dice205.com',
             passwordHash,
             role: 'admin',
+            firstName: "Aldrich",
+            lastName: "Abrogena",
+
         },
     ]);
 

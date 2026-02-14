@@ -93,6 +93,8 @@ CREATE TABLE `users` (
 	`email` text NOT NULL,
 	`password_hash` text NOT NULL,
 	`role` text DEFAULT 'user' NOT NULL,
+	`last_name` text NOT NULL,
+	`first_name` text NOT NULL,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 --> statement-breakpoint
