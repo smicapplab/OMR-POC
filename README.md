@@ -18,14 +18,27 @@
 - Debug heatmaps
 
 ## Frontend
-- Next.js
-- React
+- Next.js 16 (App Router)
+- React 19
+- NextAuth (Credentials Provider)
+- BFF pattern via `/api/*` routes
+- Proxy-based route protection
 
 ---
 
 # 🔐 Authentication
 
 Role-based authentication with JWT.
+
+Authentication Flow:
+
+1. NextAuth (Credentials) handles login in the frontend.
+2. Credentials are sent to NestJS `/auth/login`.
+3. NestJS returns a signed JWT (`accessToken`).
+4. JWT is stored in NextAuth session (JWT strategy).
+5. Frontend calls protected resources via BFF (`/api/*`).
+6. BFF forwards requests to NestJS with `Authorization: Bearer <jwt>`.
+7. NestJS validates via `JwtAuthGuard`.
 
 Supported roles:
 - `admin`
@@ -102,6 +115,13 @@ npm install
 
 ---
 
+## 3️⃣ Install Frontend Dependencies
+
+cd fe-omr-demo
+npm install
+
+---
+
 ## 4️⃣ Run Drizzle Schema Push / Migration
 
 From `be-omr-demo`:
@@ -139,4 +159,30 @@ npm run start:dev
 
 ---
 
-The system is now ready for authentication and OMR integration.
+## 7️⃣ Configure Environment Variables (Frontend)
+
+Create `.env.local` inside the frontend project:
+
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_random_secret_here
+NEXT_API_URL=http://localhost:4000
+
+Note:
+- `NEXTAUTH_SECRET` is used by NextAuth.
+- `JWT_SECRET` (backend) must be configured separately in NestJS.
+- `NEXT_API_URL` is used by BFF routes to call the backend.
+
+---
+
+## 8️⃣ Start Frontend
+
+cd fe-omr-demo
+npm run dev
+
+---
+
+The system is now ready for:
+- Authentication (NextAuth + NestJS JWT)
+- Protected API access via BFF
+- OMR processing (Python + OpenCV)
+- Shared SQLite persistence layer
