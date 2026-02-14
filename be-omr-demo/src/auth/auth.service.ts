@@ -9,7 +9,6 @@ import { JwtPayload } from './types/jwt-payload.type';
 @Injectable()
 export class AuthService {
 
-
     constructor(
         private readonly dbService: DatabaseService,
         private readonly jwtService: JwtService,
@@ -35,9 +34,6 @@ export class AuthService {
 
     async login(email: string, password: string) {
         const user = await this.validateUser(email, password);
-
-        console.log(user)
-
         const payload: JwtPayload = {
             sub: user.id,
             email: user.email,

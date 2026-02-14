@@ -26,10 +26,11 @@ export const config = {
     matcher: [
         /*
          * Match all request paths except:
-         * 1. /api/auth (NextAuth)
-         * 2. _next (static files)
-         * 3. static files (images, favicon, etc.)
+         * - /api/auth (NextAuth)
+         * - _next static/image files
+         * - favicon/icon
+         * - all static files with extensions (images, css, js, etc.)
          */
-        "/((?!api/auth|_next/static|_next/image|favicon.ico|icon.png).*)",
+        "/((?!api/auth|_next/static|_next/image|favicon.ico|icon.png|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css|js|map)$).*)",
     ],
 };

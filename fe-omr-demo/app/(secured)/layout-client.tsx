@@ -3,13 +3,13 @@
 import { AppSidebar } from "@/components/navigation/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { LayoutDashboard, User } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 
 const data = {
     navMain: [
         {
             title: "Dashboard",
-            url: "/broker",
+            url: "/dashboard",
             icon: LayoutDashboard,
             isActive: true,
         },
