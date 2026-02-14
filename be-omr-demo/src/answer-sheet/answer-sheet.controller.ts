@@ -3,6 +3,7 @@ import { AnswerSheetService } from './answer-sheet.service';
 import { ListAnswerSheetDto } from './dto/list-answer-sheet.dto';
 import { PaginatedAnswerSheetResponse } from './interfaces/paginated-response.interface';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AnswerSheetDetailResponse } from './interfaces/answer-sheet-detail-response-interface';
 
 @Controller('answer-sheet')
 export class AnswerSheetController {
@@ -20,7 +21,7 @@ export class AnswerSheetController {
     @Get(':id')
     async getAnswerSheetById(
         @Param('id', ParseIntPipe) id: number,
-    ) {
+    ): Promise<AnswerSheetDetailResponse | null>  {
         return this.answerSheetService.getAnswerSheetById(id);
     }
     

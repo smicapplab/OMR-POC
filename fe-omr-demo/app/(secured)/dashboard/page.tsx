@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useLoading } from "@/app/context/LoadingContext";
 
 interface PaginatedAnswerSheetResponse {
     page: number;
@@ -36,17 +38,18 @@ interface AnswerSheetListItem {
 export default function Dashboard() {
     const [data, setData] = useState<PaginatedAnswerSheetResponse | null>(null);
     const [keyword, setKeyword] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [sortBy, setSortBy] = useState<"name" | "school" | "created_at">("created_at");
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
     const [, startTransition] = useTransition();
+    const { push } = useRouter();
+    const { setIsLoading } = useLoading();
 
     const fetchData = useCallback(async (search?: string, pageNumber?: number) => {
-        setLoading(true);
+        setIsLoading(true);
 
         const params = new URLSearchParams({
-            page: String(pageNumber ?? page),
+            page: String(pageNumber ?? 1),
             limit: "10",
             sortBy,
             sortOrder,
@@ -60,7 +63,7 @@ export default function Dashboard() {
 
         if (!res.ok) {
             setData(null);
-            setLoading(false);
+            setIsLoading(false);
             return;
         }
 
@@ -72,8 +75,8 @@ export default function Dashboard() {
             setPage(pageNumber);
         }
 
-        setLoading(false);
-    }, [page, sortBy, sortOrder]);
+        setIsLoading(false);
+    }, [sortBy, sortOrder, setIsLoading]);
 
     useEffect(() => {
         startTransition(() => {
@@ -97,9 +100,9 @@ export default function Dashboard() {
                 />
                 <Button
                     onClick={() => fetchData(keyword)}
-                    disabled={loading}
+                    disabled={false}
                 >
-                    {loading ? "Searching..." : "Search"}
+                    Search
                 </Button>
                 <Button
                     variant="outline"
@@ -119,7 +122,6 @@ export default function Dashboard() {
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead className="text-center">ID</TableHead>
                                     <TableHead
                                         className="text-center cursor-pointer select-none"
                                         onClick={() => {
@@ -187,8 +189,7 @@ export default function Dashboard() {
                             </TableHeader>
                             <TableBody>
                                 {data.data.map((item) => (
-                                    <TableRow key={item.scanId}>
-                                        <TableCell>{item.scanId}</TableCell>
+                                    <TableRow key={item.scanId} onClick={() => push(`answer-sheet/${item.scanId}`)} className="cursor-pointer">
                                         <TableCell>
                                             {item.firstName ?? ""} {item.lastName ?? ""}
                                         </TableCell>
@@ -232,14 +233,14 @@ export default function Dashboard() {
                         <div className="flex gap-2">
                             <Button
                                 variant="outline"
-                                disabled={page <= 1 || loading}
+                                disabled={page <= 1}
                                 onClick={() => fetchData(keyword, page - 1)}
                             >
                                 Previous
                             </Button>
                             <Button
                                 variant="outline"
-                                disabled={page >= data.totalPages || loading}
+                                disabled={page >= data.totalPages}
                                 onClick={() => fetchData(keyword, page + 1)}
                             >
                                 Next

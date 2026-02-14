@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, type ReactNode } from "react";
+import React, { createContext, useContext, useState, useCallback, useMemo, type ReactNode } from "react";
 
 interface LoadingContextType {
     isLoading: boolean;
@@ -19,13 +19,20 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) =>
     const [isLoading, _setIsLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
 
-    const setIsLoading = (loading: boolean) => {
+    const setIsLoading = useCallback((loading: boolean) => {
         if (loading) setMessage("");
         _setIsLoading(loading);
-    };
+    }, []);
+
+    const value = useMemo(() => ({
+        isLoading,
+        setIsLoading,
+        message,
+        setMessage,
+    }), [isLoading, message, setIsLoading]);
 
     return (
-        <LoadingContext.Provider value={{ isLoading, setIsLoading, message, setMessage }}>
+        <LoadingContext.Provider value={value}>
             {children}
         </LoadingContext.Provider>
     );

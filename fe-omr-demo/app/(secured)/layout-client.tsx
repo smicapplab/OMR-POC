@@ -4,6 +4,7 @@ import { AppSidebar } from "@/components/navigation/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { LayoutDashboard } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const data = {
     navMain: [
@@ -21,6 +22,25 @@ export default function LayoutClient({
 }: {
     children: React.ReactNode;
 }) {
+    const pathname = usePathname();
+
+    const deriveTitle = () => {
+        if (!pathname) return "";
+
+        const segments = pathname.split("/").filter(Boolean);
+        const lastSegment = segments[segments.length - 1] || "dashboard";
+
+        // If dynamic route like /answer-sheet/3, use previous segment
+        const titleSegment = isNaN(Number(lastSegment))
+            ? lastSegment
+            : segments[segments.length - 2] || "dashboard";
+
+        return titleSegment
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+    };
+
     return (
         <SidebarProvider>
             <AppSidebar data={data} />
@@ -32,7 +52,7 @@ export default function LayoutClient({
                             orientation="vertical"
                             className="mr-2 data-[orientation=vertical]:h-4"
                         />
-                       Dashboard
+                        {deriveTitle()}
                     </div>
                 </header>
                 {children}
