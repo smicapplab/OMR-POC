@@ -42,3 +42,14 @@ export function getFallbackText(firstName?: string, lastName?: string): string {
   const lastInitial = lastName?.charAt(0).toUpperCase();
   return `${firstInitial}${lastInitial}`;
 }
+
+// Normalize label
+export const formatLabel = (field: string) => {
+  if (field === "ssc") return "Special Science Curriculum?";
+  if (field === "fourPs") return "Pantawid Pamilya Recipient?";
+
+  // Convert camelCase to spaced words
+  return field
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/^./, (str) => str.toUpperCase());
+};

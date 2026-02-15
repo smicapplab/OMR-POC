@@ -9,6 +9,9 @@ import { ZoomableImage } from "./components/zoomable-image";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { StudentInfo } from "./components/student-info";
+import { Answers } from "./components/answer";
 
 export default function AnswerSheet() {
     const params = useParams();
@@ -79,7 +82,7 @@ export default function AnswerSheet() {
 
     return (
         <div className="h-full flex flex-col">
-            <Separator className="my-1"/>
+            <Separator className="my-1" />
             <ResizablePanelGroup orientation="horizontal" className="flex-1 min-h-0">
                 <ResizablePanel defaultSize={60} className="px-5">
                     <div className="flex items-center mb-4">
@@ -95,15 +98,21 @@ export default function AnswerSheet() {
                         </h1>
                     </div>
                     <Separator />
-                    <pre className="p-4 text-xs overflow-auto">
-                        {JSON.stringify(data.omrScan, null, 2)}
-                    </pre>
+
+                    <Tabs defaultValue="student-information" className="mt-5 w-full">
+                        <TabsList>
+                            <TabsTrigger value="student-information">Student Information</TabsTrigger>
+                            <TabsTrigger value="answers">Answers</TabsTrigger>
+                        </TabsList>
+                        <StudentInfo student={data.student} currentSchool={data.currentSchool} previousSchool={data.previousSchool} />
+                        <Answers answers={data.answers}/>
+                    </Tabs>
+
                 </ResizablePanel>
 
                 <ResizableHandle withHandle />
 
                 <ResizablePanel defaultSize={40} className="px-5">
-                    {data.omrScan.fileUrl}
                     <ZoomableImage src={data.omrScan.fileUrl} />
                 </ResizablePanel>
             </ResizablePanelGroup>

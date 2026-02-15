@@ -1,10 +1,10 @@
-"use client";
 /* eslint-disable @next/next/no-img-element */
+"use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 export function ZoomableImage({ src }: { src: string | null }) {
-    const [scale, setScale] = useState(1);
+    const [scale, setScale] = useState(0.3);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
 
@@ -12,34 +12,12 @@ export function ZoomableImage({ src }: { src: string | null }) {
     const startRef = useRef({ x: 0, y: 0 });
     const imgRef = useRef<HTMLImageElement | null>(null);
 
-    const zoomIn = () => setScale((s) => Math.min(s + 0.2, 5));
-    const zoomOut = () => setScale((s) => Math.max(s - 0.2, 0.05));
+    const zoomIn = () => setScale((s) => Math.min(s + 0.05, 5));
+    const zoomOut = () => setScale((s) => Math.max(s - 0.05, 0.05));
     const reset = () => {
-        setScale(1);
+        setScale(0.3);
         setPosition({ x: 0, y: 0 });
     };
-
-    useEffect(() => {
-        function fitToWidth() {
-            if (!containerRef.current || !imgRef.current) return;
-
-            const containerWidth = containerRef.current.clientWidth;
-            const imageWidth = imgRef.current.naturalWidth;
-
-            if (!imageWidth) return;
-
-            const fitScale = containerWidth / imageWidth;
-            setScale(fitScale);
-            setPosition({ x: 0, y: 0 });
-        }
-
-        fitToWidth();
-        window.addEventListener("resize", fitToWidth);
-
-        return () => {
-            window.removeEventListener("resize", fitToWidth);
-        };
-    }, [src]);
 
     const handleMouseDown = (e: React.MouseEvent) => {
         setIsDragging(true);
@@ -69,6 +47,7 @@ export function ZoomableImage({ src }: { src: string | null }) {
 
     return (
         <div
+            key={src ?? "no-image"}
             ref={containerRef}
             className="relative h-full w-full overflow-hidden bg-muted/20"
             onMouseMove={handleMouseMove}
