@@ -47,7 +47,7 @@ export function LoginForm() {
             } else {
                 toast({
                     title: "Login successful",
-                    description: "Redirecting to your Newport Lending portal...",
+                    description: "Redirecting to your Dashboard...",
                     variant: "success",
                 });
 
