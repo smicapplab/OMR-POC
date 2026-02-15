@@ -1,3 +1,13 @@
+# OMR Processing System
+
+An end-to-end Optical Mark Recognition (OMR) system that processes scanned answer sheets, extracts structured student data, scores subject responses, and provides a web-based review interface.
+
+The system consists of:
+- Python-based OMR engine (image processing + scoring)
+- NestJS backend API (authentication + persistence)
+- Next.js frontend (review dashboard)
+- Shared SQLite database
+
 ---
 
 # ⚙️ Technology Stack
@@ -13,7 +23,7 @@
 - Python
 - OpenCV
 - Deskew and normalization
-- Bubble grid overlay validation
+- Bubble grid calibration
 - Fill ratio and contour-based scoring
 - Debug heatmaps
 
@@ -55,19 +65,6 @@ Passwords are hashed using bcrypt.
 
 ---
 
-# 🖼 Screenshots
-
-## 🔐 Login Page
-
-<img src="./screenshots/login.png" width="700" />
-
-## 📊 Dashboard
-
-<img src="./screenshots/dashboard.png" width="700" />
-
-
----
-
 # 🗄 Database
 
 - SQLite (`omr.db`)
@@ -75,43 +72,56 @@ Passwords are hashed using bcrypt.
 - WAL mode enabled for multi-process safety
 - Foreign keys enabled
 
-Seed tracking is handled via a `seed_history` table to prevent duplicate seed execution.
+Core tables:
+- `omr_scan`
+- `student`
+- `current_school`
+- `previous_school`
+- `student_answer`
+- `seed_history`
+
+Schema is normalized for analytics and reporting.
 
 ---
 
-# 🚀 Setup Instructions
+# 🖼 Screenshots
 
-## 1️⃣ Install SQLite
+## 🔐 Login Page
+<img src="./screenshots/login.png" width="700" />
 
-Make sure SQLite is installed on your machine.
+## 📊 Dashboard
+<img src="./screenshots/dashboard.png" width="700" />
 
-### macOS (Homebrew)
+## 👤 Student Information
+<img src="./screenshots/student-info.png" width="700" />
+
+## 📋 Answer Matrix Review
+<img src="./screenshots/answers.png" width="700" />
+
+---
+
+# 🚀 Setup Guide
+
+## 1. Install SQLite
+
+macOS:
 
 ```bash
 brew install sqlite
-```
-
-Verify installation:
-
-```bash
 sqlite3 --version
 ```
 
 ---
 
-## 2️⃣ Create OMR Database
+## 2. Create Database
 
-From the project root:
+From project root:
 
 ```bash
 touch omr.db
 ```
 
-This creates the shared SQLite database used by both:
-- Python OMR engine
-- NestJS backend
-
-Ensure your `.env` contains:
+Ensure backend `.env` contains:
 
 ```bash
 OMR_DB_PATH=../omr.db
@@ -119,7 +129,7 @@ OMR_DB_PATH=../omr.db
 
 ---
 
-## 3️⃣ Install Backend Dependencies
+## 3. Install Backend
 
 ```bash
 cd be-omr-demo
@@ -128,14 +138,16 @@ npm install
 
 ---
 
-## 3️⃣ Install Frontend Dependencies
+## 4. Install Frontend
 
+```bash
 cd fe-omr-demo
 npm install
+```
 
 ---
 
-## 4️⃣ Run Drizzle Schema Push / Migration
+## 5. Apply Schema
 
 From `be-omr-demo`:
 
@@ -143,59 +155,74 @@ From `be-omr-demo`:
 npx drizzle-kit push
 ```
 
-This will:
-- Create `users` table
-- Create `seed_history` table
-- Apply schema to `omr.db`
-
 ---
 
-## 5️⃣ Run Seeds
+## 6. Seed Users
 
 ```bash
 npx ts-node seeds/seed-users.ts
 ```
 
-This will insert:
-- Admin user
-- Regular user
-
-Seed execution is tracked in `seed_history` to prevent duplicates.
-
 ---
 
-## 6️⃣ Start Backend (Development Mode)
+## 7. Start Backend
 
 ```bash
 npm run start:dev
 ```
 
+Default: http://localhost:4000
+
 ---
 
-## 7️⃣ Configure Environment Variables (Frontend)
+## 8. Configure Frontend Environment
 
-Create `.env.local` inside the frontend project:
+Create `.env.local` inside `fe-omr-demo`:
 
+```bash
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_random_secret_here
 NEXT_API_URL=http://localhost:4000
+```
 
-Note:
+Notes:
 - `NEXTAUTH_SECRET` is used by NextAuth.
-- `JWT_SECRET` (backend) must be configured separately in NestJS.
-- `NEXT_API_URL` is used by BFF routes to call the backend.
+- `JWT_SECRET` must be configured separately in the backend.
 
 ---
 
-## 8️⃣ Start Frontend
+## 9. Start Frontend
 
+```bash
 cd fe-omr-demo
 npm run dev
+```
+
+Default: http://localhost:3000
 
 ---
 
-The system is now ready for:
-- Authentication (NextAuth + NestJS JWT)
-- Protected API access via BFF
-- OMR processing (Python + OpenCV)
-- Shared SQLite persistence layer
+# ✅ System Capabilities
+
+- Image-based bubble detection
+- Confidence-driven scoring
+- Question-level review flags
+- Matrix-based answer comparison
+- Role-based access control
+- Shared SQLite persistence
+
+---
+
+# 🔮 Future Enhancements
+
+- Handwritten field recognition
+- Confidence threshold tuning
+- Bulk scan ingestion pipeline
+- Analytics dashboard
+- Export to CSV / PDF
+
+---
+
+This project demonstrates a production-ready OMR architecture combining computer vision, structured persistence, and a modern full-stack review interface.
+
+---
