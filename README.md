@@ -1,228 +1,113 @@
-# OMR Processing System
+# 🎯 OMR-PROD: Enterprise Optical Mark Recognition System
 
-An end-to-end Optical Mark Recognition (OMR) system that processes scanned answer sheets, extracts structured student data, scores subject responses, and provides a web-based review interface.
+[![Architecture: Distributed](https://img.shields.io/badge/Architecture-Distributed_Edge--to--Cloud-blue)](https://github.com/)
+[![Security: AES-256](https://img.shields.io/badge/Security-AES--256_Encrypted-green)](https://github.com/)
+[![Privacy: AWS_KMS](https://img.shields.io/badge/Privacy-AWS_KMS_Field_Level-orange)](https://github.com/)
 
-The system consists of:
-- Python-based OMR engine (image processing + scoring)
-- NestJS backend API (authentication + persistence)
-- Next.js frontend (review dashboard)
-- Shared SQLite database
-
----
-
-# ⚙️ Technology Stack
-
-## Backend API
-- NestJS
-- Drizzle ORM
-- SQLite (better-sqlite3)
-- JWT Authentication
-- bcrypt password hashing
-
-## OMR Engine
-- Python
-- OpenCV
-- Deskew and normalization
-- Bubble grid calibration
-- Fill ratio and contour-based scoring
-- Debug heatmaps
-
-## Frontend
-- Next.js 16 (App Router)
-- React 19
-- NextAuth (Credentials Provider)
-- BFF pattern via `/api/*` routes
-- Proxy-based route protection
+## 📌 Executive Summary
+**OMR-PROD** is an enterprise-grade, multi-tenant Optical Mark Recognition system engineered for high-stakes government and college entrance examinations. Unlike traditional OMR solutions, OMR-PROD is built for **forensic accountability**. It ensures that every student's answer is captured, signed, and preserved in a manner that is mathematically provable and legally defensible, even in environments with intermittent internet connectivity.
 
 ---
 
-# 🔐 Authentication
+## 🏗 System Architecture
 
-Role-based authentication with JWT.
+The system utilizes a **Symmetric Monorepo** architecture, separating the high-performance local ingestion engine from the scalable central administration hub.
 
-Authentication Flow:
+### 1. The Edge Appliance (Local School Site)
+Designed to run on local hardware (macOS M4 Mini / Linux) to ensure zero-latency scanning and data capture.
+*   **OMR Engine:** Built on Python 3.11 and OpenCV. Features advanced deskewing, fiducial marker alignment, and circular-masking bubble detection.
+*   **Local Persistence:** Uses **SQLCipher** (AES-256 encrypted SQLite) to prevent unauthorized local access to exam data.
+*   **Edge Console:** A static Next.js frontend that allows operators to manage the scan queue, verify image quality, and monitor sync status without exposing exam scores.
+*   **Hardware Integrity:** Each machine is bound to a unique cryptographic identity (mTLS/Signed JWT).
 
-1. NextAuth (Credentials) handles login in the frontend.
-2. Credentials are sent to NestJS `/auth/login`.
-3. NestJS returns a signed JWT (`accessToken`).
-4. JWT is stored in NextAuth session (JWT strategy).
-5. Frontend calls protected resources via BFF (`/api/*`).
-6. BFF forwards requests to NestJS with `Authorization: Bearer <jwt>`.
-7. NestJS validates via `JwtAuthGuard`.
-
-Supported roles:
-- `admin`
-- `user`
-
-Seeded demo accounts:
-
-| Email | Password | Role |
-|-------|----------|------|
-| storrefranca@gmail.com | password | admin |
-| aldrich.abrogena@dice205.com | password | admin |
-
-Passwords are hashed using bcrypt.
+### 2. The Cloud Hub (National Administration)
+A serverless architecture designed for massive concurrency during peak exam seasons.
+*   **Orchestration Layer:** NestJS (TypeScript) deployed via AWS Lambda.
+*   **Relational Engine:** Supabase (Postgres) with **Row Level Security (RLS)** for strict multi-tenant school isolation.
+*   **Asset Management:** AWS S3 with **Object Lock (WORM)** technology.
+*   **Identity Provider:** Custom Auth (based on HRIS enterprise standards) with rotating `HttpOnly` refresh tokens.
 
 ---
 
-# 🗄 Database
+## 🔐 Security & Forensic Integrity
 
-- SQLite (`omr.db`)
-- Shared between Python OMR processor and NestJS backend
-- WAL mode enabled for multi-process safety
-- Foreign keys enabled
+The system's "Vault" security model is designed to survive technical audits and legal challenges.
 
-Core tables:
-- `omr_scan`
-- `student`
-- `current_school`
-- `previous_school`
-- `student_answer`
-- `seed_history`
+### 1. Chain of Custody (Digital Signatures)
+*   **At-Source Hashing:** The moment a scan is processed at the edge, a **SHA-256 hash** is generated for the raw image.
+*   **Cryptographic Signing:** The hash, student LRN, and timestamp are signed using the machine's private key.
+*   **Verification:** The Cloud API validates this signature upon arrival. If a single pixel in the image or a single digit in the score is modified locally, the cloud will reject the record as "Tampered."
 
-Schema is normalized for analytics and reporting.
+### 2. Privacy & PII (AWS KMS)
+*   **Zero-Knowledge Storage:** Personally Identifiable Information (PII), such as Student Names, is encrypted using **AWS KMS** before it leaves the school's local network.
+*   **Field-Level Encryption:** The database stores names as encrypted blobs. Decryption only occurs in the memory of the NestJS Lambda during an authorized session, meaning even a database breach would not leak student identities.
 
----
+### 3. Multi-Tenant School Isolation
+*   **RLS Enforcement:** Security is not handled in the application code alone. Postgres **Row Level Security (RLS)** ensures that employees from "School A" are mathematically blocked from querying or seeing data from "School B."
 
-# 🖼 Screenshots
-
-## 🔐 Login Page
-<img src="./screenshots/login.png" width="700" />
-
-## 📊 Dashboard
-<img src="./screenshots/dashboard.png" width="700" />
-
-## 👤 Student Information
-<img src="./screenshots/student-info.png" width="700" />
-
-## 📋 Answer Matrix Review
-<img src="./screenshots/answers.png" width="700" />
+### 4. Forensic Evidence (Object Lock)
+*   **Immutability:** High-resolution masters are stored with **WORM (Write Once, Read Many)** policies. This prevents deletion or modification by any user—including administrators—for a set legal retention period (e.g., 5 years).
 
 ---
 
-# 🚀 Setup Guide
+## 📡 Resilience: The Sync Engine
 
-## 1. Install SQLite
+To handle regional connectivity issues, OMR-PROD utilizes a **Store-and-Forward** sync strategy:
 
-macOS:
+*   **Dual-Asset Upload:**
+    1.  **Immediate:** Syncs JSON scores and a lightweight **WebP Proxy** (~1.5MB) for instant cloud review.
+    2.  **Background:** Syncs the **Full PNG Master** (~27MB) using S3 Multipart Uploads with automatic resume capability.
+*   **Conflict Resolution:** Uses a "Vector Clock" approach to ensure the machine's local state and the cloud's state are always synchronized without data loss.
 
-```bash
-brew install sqlite
-sqlite3 --version
+---
+
+## 📂 Project Structure
+
+```text
+OMR-PROD/
+├── apps/
+│   ├── web-cloud/      # Next.js: National Admin & School Portals
+│   ├── web-edge/       # Next.js: Local School Scanning Console
+│   ├── api-cloud/      # NestJS: Central API (Auth, KMS, Reporting)
+│   └── api-edge/       # Python: OMR Engine, FastAPI & Sync Agent
+├── packages/
+│   ├── database/       # Drizzle: Unified schemas (Postgres + SQLite)
+│   ├── contracts/      # Zod: Shared Sync & API Contracts (Single Source of Truth)
+│   ├── ui/             # React: Shared Shadcn/UI component library
+│   └── config/         # Standardized TS, ESLint, and Prettier rules
+└── supabase/           # SQL: Row Level Security (RLS) policies & migrations
 ```
 
 ---
 
-## 2. Create Database
+## 🛠 Technology Stack Rationale
 
-From project root:
-
-```bash
-touch omr.db
-```
-
-Ensure backend `.env` contains:
-
-```bash
-OMR_DB_PATH=../omr.db
-```
+| Tech | Choice | Rationale |
+| :--- | :--- | :--- |
+| **Monorepo** | Turborepo | Maintains type-safety across Python, TypeScript, and Edge/Cloud apps. |
+| **API** | NestJS | Proven enterprise-grade dependency injection and middleware. |
+| **Logic** | Python | Industry-standard libraries for Computer Vision (OpenCV) and OMR. |
+| **Database** | Postgres | Advanced relational capabilities for multi-tenant querying and RLS. |
+| **ORM** | Drizzle | Headless, type-safe, and supports both PG (Cloud) and SQLite (Edge). |
+| **Styling** | Shadcn/UI | Modern, accessible, and easily themeable for school-specific branding. |
 
 ---
 
-## 3. Install Backend
-
-```bash
-cd be-omr-demo
-npm install
-```
-
----
-
-## 4. Install Frontend
-
-```bash
-cd fe-omr-demo
-npm install
-```
+## 📑 Compliance & Audit
+OMR-PROD maintains an **Immutable Audit Log**. Every manual change to a score (e.g., after a student dispute) is recorded with:
+*   Original Machine Score
+*   User ID of the Reviewer
+*   Timestamp & IP Address
+*   Justification Code
+*   Digital Signature of the Edit
 
 ---
 
-## 5. Apply Schema
-
-From `be-omr-demo`:
-
-```bash
-npx drizzle-kit push
-```
+## 🚀 Future Roadmap
+- [ ] Template Versioning (Support for multiple answer sheet layouts).
+- [ ] Over-the-Air (OTA) Updates for Edge Appliances.
+- [ ] Student Self-Service Portal with secure result verification.
+- [ ] AI-assisted smudge and double-mark detection.
 
 ---
-
-## 6. Seed Users
-
-```bash
-npx ts-node seeds/seed-users.ts
-```
-
----
-
-## 7. Start Backend
-
-```bash
-npm run start:dev
-```
-
-Default: http://localhost:4000
-
----
-
-## 8. Configure Frontend Environment
-
-Create `.env.local` inside `fe-omr-demo`:
-
-```bash
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your_random_secret_here
-NEXT_API_URL=http://localhost:4000
-```
-
-Notes:
-- `NEXTAUTH_SECRET` is used by NextAuth.
-- `JWT_SECRET` must be configured separately in the backend.
-
----
-
-## 9. Start Frontend
-
-```bash
-cd fe-omr-demo
-npm run dev
-```
-
-Default: http://localhost:3000
-
----
-
-# ✅ System Capabilities
-
-- Image-based bubble detection
-- Confidence-driven scoring
-- Question-level review flags
-- Matrix-based answer comparison
-- Role-based access control
-- Shared SQLite persistence
-
----
-
-# 🔮 Future Enhancements
-
-- Handwritten field recognition
-- Confidence threshold tuning
-- Bulk scan ingestion pipeline
-- Analytics dashboard
-- Export to CSV / PDF
-
----
-
-This project demonstrates a production-ready OMR architecture combining computer vision, structured persistence, and a modern full-stack review interface.
-
----
+© 2026 OMR-PROD Enterprise. Proprietary and Confidential.
